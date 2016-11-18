@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f15b9d55-b3fb-4036-8e21-fc9ce5c91c4d" name="Default" comment="" />
+    <list default="true" id="f15b9d55-b3fb-4036-8e21-fc9ce5c91c4d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="chat.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -37,18 +39,18 @@
       <file leaf-file-name="GestioneSquadra.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/GestioneSquadra.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
+            <state relative-caret-position="374">
               <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
               <folding>
                 <element signature="e#121#149#0#PHP" expanded="true" />
                 <element signature="e#243#354#0#PHP" expanded="false" />
                 <element signature="e#769#1669#0#PHP" expanded="false" />
                 <element signature="e#1675#2509#0#PHP" expanded="false" />
+                <element signature="e#2515#3350#0#PHP" expanded="false" />
                 <element signature="e#3355#3482#0#PHP" expanded="false" />
                 <marker date="1479469093068" expanded="true" signature="477:663" ph="INSERT INTO squadre... " />
                 <marker date="1479469093068" expanded="true" signature="833:854" ph="SELECT * fro... squadre" />
                 <marker date="1479469093068" expanded="true" signature="1720:1763" ph="SELECT * FRO... squadre" />
-                <marker date="1479469093068" expanded="false" signature="2549:3349" ph="..." />
                 <marker date="1479469093068" expanded="true" signature="2564:2604" ph="SELECT * FRO... squadre" />
               </folding>
             </state>
@@ -56,6 +58,9 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -112,7 +117,7 @@
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -140,81 +145,17 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
+              <option name="myItemId" value="Progetto EMAD" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="calcio" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Manager" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,17 +251,19 @@
       <workItem from="1479112540175" duration="24000" />
       <workItem from="1479403962479" duration="467000" />
       <workItem from="1479404456144" duration="10467000" />
+      <workItem from="1479482189741" duration="11000" />
+      <workItem from="1479482212489" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50745000" />
+    <option name="totallyTimeSpent" value="50770000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24670571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24670571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -381,44 +324,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/materalize/js/materialize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-408">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/materalize/js/materialize.js" />
     <entry file="file://$USER_HOME$/Desktop/startTemplate/materialize&amp;angular/public_html/index.html" />
-    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Site/outfits.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Site/template.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="90" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Admin/inserisciArticolo.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="57" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Site/outfits.html.twig" />
+    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Site/template.html.twig" />
+    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Admin/inserisciArticolo.html.twig" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Categoria.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Prodotto.php" />
-    <entry file="file://$PROJECT_DIR$/../caterina/src/AppBundle/Entity/Articolo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="28" column="7" selection-start-line="26" selection-start-column="4" selection-end-line="28" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../caterina/src/AppBundle/Entity/Articolo.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Utente.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Messaggio.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
@@ -431,13 +344,7 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ChatController.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ChatController.php" />
-    <entry file="file://$PROJECT_DIR$/../caterina/src/AppBundle/Controller/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../caterina/src/AppBundle/Controller/AdminController.php" />
     <entry file="file://$PROJECT_DIR$/src/.htaccess">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -496,7 +403,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -504,11 +410,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#7#91#0#PHP" expanded="true" />
-            <element signature="e#139#417#0#PHP" expanded="false" />
-            <element signature="e#422#479#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -516,12 +417,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="607">
           <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding>
-            <element signature="e#7#91#0#PHP" expanded="true" />
-            <element signature="e#1649#1728#0#PHP" expanded="false" />
-            <element signature="e#1783#1882#0#PHP" expanded="false" />
-            <element signature="e#1888#2200#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -529,14 +424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="e#1235#2576#0#PHP" expanded="false" />
-            <element signature="e#1702#2428#0#PHP" expanded="false" />
-            <element signature="e#2672#4014#0#PHP" expanded="false" />
-            <element signature="e#4101#4225#0#PHP" expanded="false" />
-            <element signature="e#4332#4862#0#PHP" expanded="false" />
-            <element signature="e#4939#5665#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -544,29 +431,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/AppBundle/Controller/DefaultControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/AppBundle/Controller/DefaultControllerTest.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/GestioneGiocatore.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding>
-            <element signature="e#121#151#0#PHP" expanded="true" />
-            <marker date="1479460487824" expanded="true" signature="483:669" ph="INSERT INTO squadre... " />
-            <marker date="1479460487824" expanded="true" signature="873:887" ph="SELECT * fro... squadre" />
-            <marker date="1479460487824" expanded="true" signature="873:896" ph="SELECT * fro... giocatori" />
-            <marker date="1479460487824" expanded="true" signature="873:933" ph="SELECT * fro... giocatori" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,7 +446,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
           <caret line="307" column="81" selection-start-line="307" selection-start-column="81" selection-end-line="307" selection-end-column="81" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -582,9 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#93#117#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -592,24 +460,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/GestioneSquadra.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
+        <state relative-caret-position="374">
           <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
           <folding>
             <element signature="e#121#149#0#PHP" expanded="true" />
             <element signature="e#243#354#0#PHP" expanded="false" />
             <element signature="e#769#1669#0#PHP" expanded="false" />
             <element signature="e#1675#2509#0#PHP" expanded="false" />
+            <element signature="e#2515#3350#0#PHP" expanded="false" />
             <element signature="e#3355#3482#0#PHP" expanded="false" />
             <marker date="1479469093068" expanded="true" signature="477:663" ph="INSERT INTO squadre... " />
             <marker date="1479469093068" expanded="true" signature="833:854" ph="SELECT * fro... squadre" />
             <marker date="1479469093068" expanded="true" signature="1720:1763" ph="SELECT * FRO... squadre" />
-            <marker date="1479469093068" expanded="false" signature="2549:3349" ph="..." />
             <marker date="1479469093068" expanded="true" signature="2564:2604" ph="SELECT * FRO... squadre" />
           </folding>
         </state>
