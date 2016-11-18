@@ -42,6 +42,13 @@ class ManagerTorneo
         }
     }
 
+    public function insertTorneo(){
+        $random = rand(1,10000);
+        $sql ="INSERT into tornei (nomeTorneo) VALUE ('$random')";
+        $result = $this->conn->query($sql);
+        return $result;
+    }
+
     public function __destruct()
     {
         // TODO: Implement __destruct() method.

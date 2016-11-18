@@ -35,4 +35,18 @@ class TorneoController extends Controller
         }
     }
 
+    /**
+     * @Route("/torneoInsert",name="torneoInsert")
+     * @Method("GET")
+     */
+    public function insertTorneo(){
+        $manager = new ManagerTorneo();
+        $risultati = $manager->insertTorneo();
+        if($risultati!=null){
+            return new Response("Inserimento OK");
+        }
+        else {
+            return new Response("problemi");
+        }
+    }
 }
