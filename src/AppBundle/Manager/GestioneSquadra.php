@@ -14,7 +14,7 @@ use AppBundle\Utility\DB;
 class GestioneSquadra
 {
 
-   private $conn;
+    private $conn;
     private $db;
 
     public function __construct()

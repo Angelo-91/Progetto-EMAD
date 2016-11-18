@@ -12,23 +12,23 @@ namespace AppBundle\Model;
 class Giocatore
 {
 
-private $idGiocatori;
-private $golFatti;
-private $golSubiti;
-private $assist;
-private $ammonizioni;
-private $espulsioni;
-private $presenze;
-private $ruolo;
-private $valore;
-private $nome;
-private $cognome;
-private $residenza;
-private $nazionalita;
-private $email;
-private $dataDiNascita;
-private $Squadre_idSquadre;
-private $urlImmagine;
+    private $idGiocatori;
+    private $golFatti;
+    private $golSubiti;
+    private $assist;
+    private $ammonizioni;
+    private $espulsioni;
+    private $presenze;
+    private $ruolo;
+    private $valore;
+    private $nome;
+    private $cognome;
+    private $residenza;
+    private $nazionalita;
+    private $email;
+    private $dataDiNascita;
+    private $Squadre_idSquadre;
+    private $urlImmagine;
 
     /**
      * @return mixed
