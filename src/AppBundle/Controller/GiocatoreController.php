@@ -9,8 +9,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Giocatore;
 use AppBundle\Entity\Persona;
-use AppBundle\Manager\GestioneGiocatore;
-use AppBundle\Manager\GestioneSquadra;
+use AppBundle\Manager\ManagerGiocatore;
+use AppBundle\Manager\ManagerSquadra;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
