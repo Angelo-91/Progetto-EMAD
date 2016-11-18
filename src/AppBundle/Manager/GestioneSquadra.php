@@ -33,7 +33,7 @@ class GestioneSquadra
 
 
     }
-    /*ciao*/
+    /*ci*/
     public function get(){
 
         $squadre=array();
