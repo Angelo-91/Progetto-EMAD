@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f15b9d55-b3fb-4036-8e21-fc9ce5c91c4d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartecipazione.php" afterPath="$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartecipazione.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/TorneoController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/TorneoController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Manager/ManagerTorneo.php" afterPath="$PROJECT_DIR$/src/AppBundle/Manager/ManagerTorneo.php" />
     </list>
     <ignored path="chat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,38 +24,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SquadraController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SquadraController.php">
+      <file leaf-file-name="TorneoController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/TorneoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="60" />
+            <state relative-caret-position="278">
+              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
               <folding>
-                <element signature="e#6#90#0#PHP" expanded="true" />
+                <element signature="e#122#158#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PartecipazioneController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartecipazioneController.php">
+      <file leaf-file-name="ManagerSquadra.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerSquadra.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1624">
+              <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="117" selection-end-column="5" />
+              <folding>
+                <element signature="e#121#149#0#PHP" expanded="true" />
+                <marker date="1479491131824" expanded="true" signature="477:663" ph="INSERT INTO squadre... " />
+                <marker date="1479491131824" expanded="true" signature="843:864" ph="SELECT * fro... squadre" />
+                <marker date="1479491131824" expanded="true" signature="1730:1773" ph="SELECT * FRO... squadre" />
+                <marker date="1479491131824" expanded="true" signature="2574:2614" ph="SELECT * FRO... squadre" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ManagerTorneo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerTorneo.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
-              <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+              <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
               <folding>
-                <element signature="e#123#182#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManagerPartecipazione.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartecipazione.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
-              <folding>
-                <element signature="e#119#154#0#PHP" expanded="true" />
-                <marker date="1479493889965" expanded="true" signature="445:473" ph="SELECT * fro... partecipazione" />
+                <element signature="e#119#146#0#PHP" expanded="true" />
+                <marker date="1479497507247" expanded="true" signature="420:440" ph="SELECT * fro... tornei" />
+                <marker date="1479497507247" expanded="true" signature="994:1033" ph="INSERT into tornei... " />
+                <marker date="1479497507247" expanded="true" signature="994:1043" ph="INSERT into tornei... " />
               </folding>
             </state>
           </provider>
@@ -69,7 +75,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/Site/template.twig.html" />
         <option value="$PROJECT_DIR$/app/Resources/views/Site/template.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/Site/home.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Categoria.php" />
@@ -105,13 +110,22 @@
         <option value="$PROJECT_DIR$/tests/AppBundle/Controller/DefaultControllerTest.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Manager/GestioneSquadra.php" />
         <option value="$PROJECT_DIR$/tests/AppBundle/Controller/GestioneSquadraTest.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Model/Partecipazione.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/GiocatoreController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Manager/ManagerGiocatore.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Manager/ManagerSquadra.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SquadraController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PartecipazioneController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartecipazione.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Model/Partecipazione.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Model/Partita.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PartecipazioneController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Model/Torneo.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartita.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Model/User.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PartitaController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Manager/ManagerUser.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/UserController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Manager/ManagerTorneo.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/TorneoController.php" />
       </list>
     </option>
   </component>
@@ -393,15 +407,15 @@
       <workItem from="1479404456144" duration="10467000" />
       <workItem from="1479482189741" duration="11000" />
       <workItem from="1479482212489" duration="14000" />
-      <workItem from="1479489516138" duration="3398000" />
+      <workItem from="1479489516138" duration="7002000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54404000" />
+    <option name="totallyTimeSpent" value="58008000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21229868" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -441,28 +455,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Site/template.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/Site/home.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/materalize/js/materialize.js" />
-    <entry file="file://$USER_HOME$/Desktop/startTemplate/materialize&amp;angular/public_html/index.html" />
-    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Site/outfits.html.twig" />
-    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Site/template.html.twig" />
-    <entry file="file://$PROJECT_DIR$/../caterina/app/Resources/views/Admin/inserisciArticolo.html.twig" />
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Categoria.php" />
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Prodotto.php" />
     <entry file="file://$PROJECT_DIR$/../caterina/src/AppBundle/Entity/Articolo.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Utente.php" />
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Messaggio.php" />
@@ -569,16 +561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Model/Squadra.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-          <folding>
-            <element signature="e#7#91#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/GiocatoreController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -587,18 +569,156 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SquadraController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="60" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+            <element signature="e#126#163#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Model/Partecipazione.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="118" column="246" selection-start-line="118" selection-start-column="246" selection-end-line="118" selection-end-column="246" />
+        <state relative-caret-position="417">
+          <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="119" selection-end-column="251" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Model/Partita.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="102" column="248" selection-start-line="102" selection-start-column="248" selection-end-line="102" selection-end-column="248" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartecipazioneController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Model/Squadra.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="117" column="8" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="223" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartecipazione.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-266">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="25" />
+          <folding>
+            <marker date="1479493889965" expanded="true" signature="445:473" ph="SELECT * fro... partecipazione" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Model/Torneo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartita.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="53" selection-end-column="5" />
+          <folding>
+            <element signature="e#121#149#0#PHP" expanded="true" />
+            <marker date="1479495697553" expanded="true" signature="425:446" ph="SELECT * fro... partite" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartitaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding>
+            <element signature="e#124#161#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding>
+            <element signature="e#119#144#0#PHP" expanded="true" />
+            <marker date="1479496777895" expanded="true" signature="415:433" ph="SELECT * fro... User" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Model/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding>
+            <element signature="e#122#156#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerGiocatore.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-212">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="e#6#90#0#PHP" expanded="true" />
+            <element signature="e#121#151#0#PHP" expanded="true" />
+            <marker date="1479491023136" expanded="true" signature="872:932" ph="SELECT * fro... giocatori" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerNews.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-306">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1479493941998" expanded="true" signature="872:932" ph="SELECT * fro... giocatori" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerTorneo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding>
+            <element signature="e#119#146#0#PHP" expanded="true" />
+            <marker date="1479497507247" expanded="true" signature="420:440" ph="SELECT * fro... tornei" />
+            <marker date="1479497507247" expanded="true" signature="994:1033" ph="INSERT into tornei... " />
+            <marker date="1479497507247" expanded="true" signature="994:1043" ph="INSERT into tornei... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerSquadra.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        <state relative-caret-position="1624">
+          <caret line="113" column="4" selection-start-line="113" selection-start-column="4" selection-end-line="117" selection-end-column="5" />
           <folding>
             <element signature="e#121#149#0#PHP" expanded="true" />
             <marker date="1479491131824" expanded="true" signature="477:663" ph="INSERT INTO squadre... " />
@@ -609,45 +729,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerGiocatore.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/TorneoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="278">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
           <folding>
-            <element signature="e#6#90#0#PHP" expanded="true" />
-            <element signature="e#121#151#0#PHP" expanded="true" />
-            <marker date="1479491023136" expanded="true" signature="872:932" ph="SELECT * fro... giocatori" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SquadraController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="13" selection-end-column="60" />
-          <folding>
-            <element signature="e#6#90#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Manager/ManagerPartecipazione.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="38" column="52" selection-start-line="38" selection-start-column="52" selection-end-line="38" selection-end-column="52" />
-          <folding>
-            <element signature="e#119#154#0#PHP" expanded="true" />
-            <marker date="1479493889965" expanded="true" signature="445:473" ph="SELECT * fro... partecipazione" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PartecipazioneController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding>
-            <element signature="e#123#182#0#PHP" expanded="true" />
+            <element signature="e#122#158#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

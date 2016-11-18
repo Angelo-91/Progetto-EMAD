@@ -15,8 +15,9 @@ class Partecipazione
     private $vittorie;
     private $pareggi;
     private $sconfitte;
-    private $idSquadre;
-    private $idTornei;
+    private $squadre_idSquadre;
+    private $tornei_idTornei;
+
 
     /**
      * @return mixed
@@ -87,7 +88,7 @@ class Partecipazione
      */
     public function getIdSquadre()
     {
-        return $this->idSquadre;
+        return $this->squadre_idSquadre;
     }
 
     /**
@@ -95,7 +96,7 @@ class Partecipazione
      */
     public function setIdSquadre($idSquadre)
     {
-        $this->idSquadre = $idSquadre;
+        $this->squadre_idSquadre = $idSquadre;
     }
 
     /**
@@ -103,7 +104,7 @@ class Partecipazione
      */
     public function getIdTornei()
     {
-        return $this->idTornei;
+        return $this->tornei_idTornei;
     }
 
     /**
@@ -111,7 +112,7 @@ class Partecipazione
      */
     public function setIdTornei($idTornei)
     {
-        $this->idTornei = $idTornei;
+        $this->tornei_idTornei = $idTornei;
     }
 
     function __toString()
