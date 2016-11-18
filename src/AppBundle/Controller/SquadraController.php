@@ -38,8 +38,6 @@ class SquadraController extends Controller
         else{
             return new Response("problemi");
         }
-
-
     }
     /**
      * @Route("/squadra/{id}",name="squadra")
