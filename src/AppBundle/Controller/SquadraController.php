@@ -8,7 +8,8 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Manager\GestioneSquadra;
+
+use AppBundle\Manager\ManagerSquadra;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -26,7 +27,7 @@ class SquadraController extends Controller
  */
     public function getAllSquadre(){
 
-        $g=new GestioneSquadra();
+        $g=new ManagerSquadra();
         $squadre=$g->get();
         if($squadre!=null) {
             $response = "";
@@ -45,7 +46,7 @@ class SquadraController extends Controller
      */
     public function getSquadraById($id){
 
-        $g=new GestioneSquadra();
+        $g=new ManagerSquadra();
         $squadra=$g->getById($id);
         if($squadra!=null)
             return new Response($squadra);

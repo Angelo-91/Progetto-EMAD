@@ -11,7 +11,7 @@ use AppBundle\Model\Giocatore;
 use AppBundle\Utility\DB;
 
 
-class GestioneGiocatore
+class ManagerGiocatore
 {
 
    private $conn;

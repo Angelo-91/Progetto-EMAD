@@ -11,7 +11,7 @@ use AppBundle\Model\Squadra;
 use AppBundle\Utility\DB;
 
 
-class GestioneSquadra
+class ManagerSquadra
 {
 
     private $conn;
