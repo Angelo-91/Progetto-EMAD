@@ -8,9 +8,11 @@
 
 namespace AppBundle\Controller;
 use AppBundle\Manager\ManagerTorneo;
+use AppBundle\Model\Torneo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class TorneoController extends Controller
@@ -36,12 +38,14 @@ class TorneoController extends Controller
     }
 
     /**
-     * @Route("/torneoInsert",name="torneoInsert")
-     * @Method("GET")
+     * @Route("/torneo/insert",name="torneoInsert")
+     * @Method("POST")
      */
-    public function insertTorneo(){
+    public function insertTorneo(Request $req){
+        $torneo = new Torneo();
         $manager = new ManagerTorneo();
-        $risultati = $manager->insertTorneo();
+        $torneo->setNomeTorneo($req->request->get("nome"));
+        $risultati = $manager->insertTorneo($torneo);
         if($risultati!=null){
             return new Response("Inserimento OK");
         }
