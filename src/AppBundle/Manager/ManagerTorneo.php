@@ -50,6 +50,44 @@ class ManagerTorneo
         return $result;
     }
 
+    public function deleteTorneo(Torneo $torneo){
+        $idTorneo = $torneo->getIdTornei();
+        $sql = "DELETE FROM tornei WHERE idTornei = '$idTorneo'";
+        $result = $this->conn->query($sql);
+        return $result;
+
+    }
+
+
+    public function getTorneoByNome($nome){
+        $torneo = new Torneo();
+        $sql = "SELECT * FROM tornei WHERE nomeTorneo='$nome'";
+        $risultato = $this->conn->query($sql);
+        if($risultato->num_rows > 0) {
+            $row = $risultato->fetch_assoc();
+            $torneo->setIdTornei($row["idTornei"]);
+            $torneo->setNomeTorneo($row["nomeTorneo"]);
+            return $torneo;
+        } else{
+            return null;
+        }
+    }
+
+    public function updateTorneo($nomeOriginale, $nomeNuovo){
+        $torneo = new Torneo();
+        $sql = "SELECT * FROM tornei WHERE nomeTorneo='$nomeOriginale'";
+        $risultato = $this->conn->query($sql);
+        if($risultato->num_rows > 0) {
+            $row = $risultato->fetch_assoc();
+            $id=$row["idTornei"];
+            $sql = "UPDATE tornei SET nomeTorneo='$nomeNuovo' WHERE idTornei='$id'";
+            $result = $this->conn->query($sql);
+            return $result;
+        } else{
+            return null;
+        }
+    }
+
     public function __destruct()
     {
         // TODO: Implement __destruct() method.

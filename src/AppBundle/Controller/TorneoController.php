@@ -53,4 +53,37 @@ class TorneoController extends Controller
             return new Response("problemi");
         }
     }
+    /**
+     * @Route("/torneo/delete/{nome}",name="torneoDelete")
+     * @Method("GET")
+     */
+    public function deleteTorneo ($nome){
+        $managerTorneo = new ManagerTorneo();
+        $daEliminare = $managerTorneo->getTorneoByNome($nome);
+        if($daEliminare==null){
+            return new Response("Non è possibile eliminare un torneo con questo nome ".$nome." perchè non esiste");
+        } else {
+            $managerTorneo->deleteTorneo($daEliminare);
+            return new Response("Torneo: ".$nome." eliminato correttamente");
+        }
+    }
+
+
+    /**
+     * @Route("/torneo/update",name="torneoInsert")
+     * @Method("POST")
+     */
+    public function updateTorneo(Request $req){
+        $managerTorneo = new ManagerTorneo();
+        $nomeOriginale = $req->request->get("nomeOriginale");
+        $nomeNuovo = $req->request->get("nomeNuovo");
+        $daUppare = $managerTorneo->getTorneoByNome($nomeOriginale);
+        if($daUppare==null){
+            return new Response("Non è possibile modificare un torneo con questo nome ".$nomeOriginale." perchè non esiste");
+        } else {
+            $managerTorneo->updateTorneo($nomeOriginale, $nomeNuovo);
+            return new Response("Torneo: ".$nomeOriginale." aggiornato in: ".$nomeNuovo);
+        }
+    }
+
 }
