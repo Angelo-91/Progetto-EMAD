@@ -18,7 +18,6 @@ use Doctrine\Tests\Common\Cache\RedisCacheTest;
  */
 class ManagerSquadra
 {
-
     /**
      * @var \mysqli
      */
