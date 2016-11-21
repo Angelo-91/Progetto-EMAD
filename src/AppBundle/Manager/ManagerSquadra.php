@@ -9,31 +9,50 @@
 namespace AppBundle\Manager;
 use AppBundle\Model\Squadra;
 use AppBundle\Utility\DB;
+use Doctrine\Tests\Common\Cache\RedisCacheTest;
 
 
+/**
+ * Class ManagerSquadra
+ * @package AppBundle\Manager
+ */
 class ManagerSquadra
 {
 
+    /**
+     * @var \mysqli
+     */
     private $conn;
+    /**
+     * @var DB
+     */
     private $db;
 
+    /**
+     * ManagerSquadra constructor.
+     */
     public function __construct()
     {
         $this->db=new DB();
         $this->conn=$this->db->connect();
     }
 
-    public function insert($idSquadre,$nome,$annoFondazione,$presidente,$sedeLegale,$urlScudetto)
+    /**
+     * @param $squadra
+     */
+    public function insert(Squadra $squadra)
     {
-
-        $query="INSERT INTO squadre (nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('$nome', '$annoFondazione', '$presidente', '$sedeLegale', '$urlScudetto')";
+        $query="INSERT INTO squadre (nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('".$squadra->getNome()."', '".$squadra->getAnnoFondazione()."', '".$squadra->getPresidente()."', '".$squadra->getSedeLegale()."', '".$squadra->geturlScudetto()."')";
         if (!$this->conn->query($query)) {
             die($this->conn->error);
         }
 
 
     }
-    /*ci*/
+
+    /**
+     * @return array|null
+     */
     public function get(){
 
         $squadre=array();
@@ -63,6 +82,10 @@ class ManagerSquadra
 
     }
 
+    /**
+     * @param $id
+     * @return Squadra|null
+     */
     public function getById($id){
 
         $sql="SELECT * FROM squadre WHERE idSquadre='$id'";
@@ -88,6 +111,10 @@ class ManagerSquadra
 
     }
 
+    /**
+     * @param $name
+     * @return Squadra|null
+     */
     public function  getByName($name){
         $sql="SELECT * FROM squadre WHERE nome='$name'";
         $result = $this->conn->query($sql);
@@ -111,6 +138,33 @@ class ManagerSquadra
         }
 
     }
+
+    /**
+     * @param $id
+     * @return null|string
+     */
+    public function delete($id){
+
+        $squadra=$this->getById($id);
+        if($squadra!=null){
+            $query="DELETE FROM squadre WHERE 	idSquadre='$id'";
+            $this->conn->query($query);
+            $url="../web/immaginiApp/Scudetti/".$squadra->getUrlScudetto();
+            unlink($url);
+            return $url;
+            }
+        else return null;
+
+
+
+
+
+
+    }
+
+    /**
+     *
+     */
     public function __destruct()
     {
         // TODO: Implement __destruct() method.
