@@ -26,7 +26,7 @@ class ManagerSquadra
     public function insert($idSquadre,$nome,$annoFondazione,$presidente,$sedeLegale,$urlScudetto)
     {
 
-        $query="INSERT INTO squadre (idSquadre, nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('$idSquadre', '$nome', '$annoFondazione', '$presidente', '$sedeLegale', '$urlScudetto')";
+        $query="INSERT INTO squadre (nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('$nome', '$annoFondazione', '$presidente', '$sedeLegale', '$urlScudetto')";
         if (!$this->conn->query($query)) {
             die($this->conn->error);
         }

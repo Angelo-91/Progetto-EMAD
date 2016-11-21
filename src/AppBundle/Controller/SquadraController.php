@@ -30,7 +30,6 @@ class SquadraController extends Controller
     public function insert(Request $re){
         $s=new Squadra();
         $m=new ManagerSquadra();
-        $s->setIdSquadre($re->request->get("i"));
         $s->setNome($re->request->get("n"));
         $s->setAnnoFondazione($re->request->get("a"));
         $s->setPresidente($re->request->get("p"));
