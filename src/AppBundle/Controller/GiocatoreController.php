@@ -58,22 +58,26 @@ class GiocatoreController extends Controller
        // DA TESTARE un po di info non le ho messo nella query perche in automatico settate a 0
         $g=new Giocatore();
         $m=new ManagerGiocatore();
-        $g->setNome($re->request->get("n"));
-        $g->setCognome($re->request->get("c"));
-        $g->setEmail($re->request->get("e"));
-        $g->setDataDiNascita($re->request->get("d"));
-        $g->setNazionalita($re->request->get("na"));
-        $g->setRuolo($re->request->get("ru"));
-        $g->setValore($re->request->get("v"));
-        $g->setSquadreIdSquadre($re->request->get("i"));
-        $g->setResidenza($re->request->get("re"));
+        $mS=new ManagerSquadra();
+        $squadra=$mS->getById($re->request->get("i"));
+        if($squadra!=null) {
+            $g->setNome($re->request->get("n"));
+            $g->setCognome($re->request->get("c"));
+            $g->setEmail($re->request->get("e"));
+            $g->setDataDiNascita($re->request->get("d"));
+            $g->setNazionalita($re->request->get("na"));
+            $g->setRuolo($re->request->get("ru"));
+            $g->setValore($re->request->get("v"));
+            $g->setSquadreIdSquadre($re->request->get("i"));
+            $g->setResidenza($re->request->get("re"));
 
-        $pathFinal=Utility::loadFile("file","Giocatori");
-        if($pathFinal!=null) {
-            $g->setUrlImmagine($pathFinal);
-            $m->insert($g);
-            return new Response("giocatore inserito con id" . $re->request->get("i"));
-        }
-        else return new Response("problema nel caricare la foto");
+            $pathFinal = Utility::loadFile("file", "Giocatori");
+            if ($pathFinal != null) {
+                $g->setUrlImmagine($pathFinal);
+                $m->insert($g);
+                return new Response("giocatore inserito con id" . $re->request->get("i"));
+            } else return new Response("problema nel caricare la foto");
+        }else
+            return new Response("vuoi inserire un giocatore a una squadra che non esiste");
     }
 }

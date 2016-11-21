@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Manager\ManagerNews;
+use AppBundle\Manager\ManagerSquadra;
 use AppBundle\Model\News;
 use AppBundle\Utility\Utility;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -31,14 +32,16 @@ class NewsController extends Controller
     {
         $n = new ManagerNews();
         $news = $n->getNewsByIdSquadra($idSquadra);
-        if (count($news) > 0) {
-            $response = "";
-            foreach ($news as $n)
-                $response = $response . $n;
+            if (count($news) > 0) {
+                $response = "";
+                foreach ($news as $n)
+                    $response = $response . $n;
 
-            return new Response($response);
-        } else
-            return new Response("nessuna notizia di questa squadra");
+                return new Response($response);
+            } else
+                return new Response("nessuna notizia di questa squadra");
+
+
 
 
     }
@@ -49,17 +52,22 @@ class NewsController extends Controller
     public function insert(Request $re){
         $n=new News();
         $m=new ManagerNews();
-        $n->setTitolo($re->request->get("t"));
-        $n->setContenuto($re->request->get("c"));
-        $n->setData($re->request->get("d"));
-        $n->setSquadreIdSquadre($re->request->get("s"));
-        $pathFinal=Utility::loadFile("file","News");
-        if($pathFinal!=null) {
-            $n->setUrlImmagine($pathFinal);
-            $m->insert($n);
-            return new Response("news inserita");
+        $mS=new ManagerSquadra();
+        $squadra=$mS->getById($re->request->get("s"));
+        if($squadra!=null) {
+            $n->setTitolo($re->request->get("t"));
+            $n->setContenuto($re->request->get("c"));
+            $n->setData($re->request->get("d"));
+            $n->setSquadreIdSquadre($re->request->get("s"));
+            $pathFinal = Utility::loadFile("file", "News");
+            if ($pathFinal != null) {
+                $n->setUrlImmagine($pathFinal);
+                $m->insert($n);
+                return new Response("news inserita");
+            } else return new Response("problema nel caricare la foto");
         }
-        else return new Response("problema nel caricare la foto");
+        else return new Response("vuoi inserire una news a una squadra che non esiste ");
+
     }
     /**
      * @Route("/news/elimina/{id}",name="eliminanews")
