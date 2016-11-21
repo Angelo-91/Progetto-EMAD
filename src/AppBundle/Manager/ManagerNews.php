@@ -7,11 +7,11 @@
  */
 
 namespace AppBundle\Manager;
-use AppBundle\Model\Giocatore;
+use AppBundle\Model\News;
 use AppBundle\Utility\DB;
 
 
-class ManagerGiocatore
+class ManagerNews
 {
 
    private $conn;
@@ -23,41 +23,30 @@ class ManagerGiocatore
         $this->conn=$this->db->connect();
     }
 
-    /*public function insert($idSquadre,$nome,$annoFondazione,$presidente,$sedeLegale,$urlScudetto)
+    public function getNewsByIdSquadra($idSquadra)
     {
 
-        $query="INSERT INTO squadre (idSquadre, nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('$idSquadre', '$nome', '$annoFondazione', '$presidente', '$sedeLegale', '$urlScudetto')";
-        if (!$this->conn->query($query)) {
-            die($this->conn->error);
-        }
-
-
-    }*/
-
-    public function getGiocatoriByIdSquadra($idSquadra){
-
-        $giocatori=array();
-        $sql="SELECT * from giocatori WHERE Squadre_idSquadre='$idSquadra'";
+        $news=array();
+        $sql="SELECT * from news WHERE Squadre_idSquadre='$idSquadra'";
         $result = $this->conn->query($sql);
         $res="";
         $i=0;
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                $g=new Giocatore();
-                $g->setNome($row["nome"]);
-                $g->setCognome($row["cognome"]);
-                $giocatori[$i]=$g;
+                $n=new News();
+                $n->setTitolo($row["titolo"]);
+                $news[$i]=$n;
                 $i++;
-                //$res=$res. "id: " . $row["idSquadre"]. " - Name: " . $row["nome"]. "<br>";
             }
-            return $giocatori;
+            return $news;
         } else {
             return null;
         }
 
 
     }
+
 
     public function __destruct()
     {
