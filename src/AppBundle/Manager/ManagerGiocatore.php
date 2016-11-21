@@ -11,29 +11,36 @@ use AppBundle\Model\Giocatore;
 use AppBundle\Utility\DB;
 
 
+/**
+ * Class ManagerGiocatore
+ * @package AppBundle\Manager
+ */
 class ManagerGiocatore
 {
 
-   private $conn;
+    /**
+     * @var \mysqli
+     */
+    private $conn;
+    /**
+     * @var DB
+     */
     private $db;
 
+    /**
+     * ManagerGiocatore constructor.
+     */
     public function __construct()
     {
         $this->db=new DB();
         $this->conn=$this->db->connect();
     }
 
-    /*public function insert($idSquadre,$nome,$annoFondazione,$presidente,$sedeLegale,$urlScudetto)
-    {
 
-        $query="INSERT INTO squadre (idSquadre, nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('$idSquadre', '$nome', '$annoFondazione', '$presidente', '$sedeLegale', '$urlScudetto')";
-        if (!$this->conn->query($query)) {
-            die($this->conn->error);
-        }
-
-
-    }*/
-
+    /**
+     * @param $idSquadra
+     * @return array|null
+     */
     public function getGiocatoriByIdSquadra($idSquadra){
 
         $giocatori=array();
@@ -45,8 +52,24 @@ class ManagerGiocatore
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 $g=new Giocatore();
+
                 $g->setNome($row["nome"]);
                 $g->setCognome($row["cognome"]);
+                $g->setIdGiocatori($row["idGiocatori"]);
+                $g->setGolFatti($row["golFatti"]);
+                $g->setGolSubiti($row["golSubiti"]);
+                $g->setAssist($row["assist"]);
+                $g->setAmmonizioni($row["ammonizioni"]);
+                $g->setEspulsioni($row["espulsioni"]);
+                $g->setPresenze($row["presenze"]);
+                $g->setRuolo($row["ruolo"]);
+                $g->setValore($row["valore"]);
+                $g->setResidenza($row["residenza"]);
+                $g->setNazionalita($row["nazionalita"]);
+                $g->setEmail($row["email"]);
+                $g->setDataDiNascita($row["dataDiNascita"]);
+                $g->setSquadreIdSquadre($row["Squadre_idSquadre"]);
+                $g->setUrlImmagine($row["urlImmagine"]);
                 $giocatori[$i]=$g;
                 $i++;
                 //$res=$res. "id: " . $row["idSquadre"]. " - Name: " . $row["nome"]. "<br>";
@@ -59,6 +82,19 @@ class ManagerGiocatore
 
     }
 
+    public function insert(Giocatore $g)
+    {
+
+        $query="INSERT INTO giocatori (ruolo, valore,nome, cognome, residenza, nazionalita, email, dataDiNascita,Squadre_idSquadre, urlImmagine) 
+                  VALUES ('".$g->getRuolo()."', '".$g->getValore()."', '".$g->getNome()."', '".$g->getCognome()."', '".$g->getResidenza()."', '".$g->getNazionalita()."','".$g->getEmail()."','".$g->getDataDiNascita()."','".$g->getSquadreIdSquadre()."','".$g->getUrlImmagine()."')";
+        if (!$this->conn->query($query)) {
+            die($this->conn->error);
+        }
+
+    }
+    /**
+     *
+     */
     public function __destruct()
     {
         // TODO: Implement __destruct() method.

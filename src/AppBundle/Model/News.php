@@ -116,7 +116,7 @@ class News
     public function __toString()
     {
         // TODO: Implement __toString() method.
-        return '{"idNews":"'.$this->getIdNews().'","titolo":"'.$this->getTitolo().'","contenuto":"'.$this->getContenuto().'","data":"'.$this->getData().'","Squadre_idSquadre":"'.$this->getSquadreIdSquadre().'","urlImmagine":"'.$this->setUrlImmagine().'"}';
+        return '{"idNews":"'.$this->getIdNews().'","titolo":"'.$this->getTitolo().'","contenuto":"'.$this->getContenuto().'","data":"'.$this->getData().'","Squadre_idSquadre":"'.$this->getSquadreIdSquadre().'","urlImmagine":"'.$this->getUrlImmagine().'"}';
     }
 
 

@@ -10,6 +10,8 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Manager\ManagerSquadra;
+use AppBundle\Model\Squadra;
+use AppBundle\Utility\Utility;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,6 +23,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SquadraController extends Controller
 {
+    /**
+     * @Route("/squadra/insert",name="insertsquadra")
+     * @Method("POST")
+     */
+    public function insert(Request $re){
+        $s=new Squadra();
+        $m=new ManagerSquadra();
+        $s->setIdSquadre($re->request->get("i"));
+        $s->setNome($re->request->get("n"));
+        $s->setAnnoFondazione($re->request->get("a"));
+        $s->setPresidente($re->request->get("p"));
+        $s->setSedeLegale($re->request->get("s"));
+        $pathFinal=Utility::loadFile("file","Scudetti");
+        if($pathFinal!=null) {
+            $s->setUrlScudetto($pathFinal);
+            $m->insert($s);
+            return new Response("squadra inserita con id" . $re->request->get("i"));
+        }
+        else return new Response("problema nel caricare la foto");
+    }
     /**
  * @Route("/squadra/all",name="allSquadre")
  * @Method("GET")
@@ -53,11 +75,22 @@ class SquadraController extends Controller
         else
             return new Response("non esiste la squadra cercata");
 
+    }
+    /**
+     * @Route("/squadra/elimina/{id}",name="eliminasquadra")
+     * @Method("GET")
+     */
+    public function deleteSquadraById($id){
 
 
+        $m=new ManagerSquadra();
+        $url=$m->delete($id);
+        if($url==null)
+            return new Response("nessuna squadra da eliminare con id :".$id);
+        else
+        return new Response("eliminata la squadra con id:".$id);
     }
 
-/*commento*/
 
 
 }

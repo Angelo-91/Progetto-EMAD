@@ -304,7 +304,24 @@ class Giocatore
 
     public function __toString()
     {
-        // TODO: Implement __toString() method.
-    return '{"nome":"'.$this->getNome().'","cognome":"'.$this->getCognome().'"}';
+   $toString=   '{"nome":"'.$this->getNome().
+                '","cognome":"'.$this->getCognome().
+                '","email":"'.$this->getEmail().
+                '","residenza":"'.$this->getResidenza().
+                '","nazionalita":"'.$this->getNazionalita().
+                '","valore":"'.$this->getValore(). '"}'.
+                '","data":"'.$this->getDataDiNascita().
+                '","url":"'.$this->getUrlImmagine().
+                '","squadra":"'.$this->getSquadreIdSquadre().
+                '","golFatti":"'.$this->getGolFatti().
+                '","golSubiti":"'.$this->getGolSubiti().
+                '","ruolo":"'.$this->getRuolo().
+                '","ammonizioni":"'.$this->getAmmonizioni().
+                '","espulsioni":"'. $this->getEspulsioni().
+                '","assist":"'.$this->getAssist().
+                '","presenze":"'.$this->getPresenze().
+                '","id":"'.$this->getIdGiocatori().
+                '"}';
+        return $toString;
     }
 }

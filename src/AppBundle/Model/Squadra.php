@@ -16,6 +16,9 @@ class Squadra
     private $sedeLegale;
     private $urlScudetto;
 
+
+
+
     /**
      * @return mixed
      */
