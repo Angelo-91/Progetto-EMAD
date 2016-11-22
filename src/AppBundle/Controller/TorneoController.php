@@ -70,7 +70,7 @@ class TorneoController extends Controller
 
 
     /**
-     * @Route("/torneo/update",name="torneoInsert")
+     * @Route("/torneo/update",name="torneoUpdate")
      * @Method("POST")
      */
     public function updateTorneo(Request $req){

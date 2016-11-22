@@ -114,7 +114,7 @@ class ManagerPartita
         $managerSquadra = new ManagerSquadra();
         $squadraCasa = $partita->getSquadraCasa();
         $squadraTrasferta = $partita->getSquadraTrasferta();
-        if($managerSquadra->getByName($squadraCasa) AND $managerSquadra->getByName($squadraTrasferta)) {
+        if($managerSquadra->getByName($squadraCasa) && $managerSquadra->getByName($squadraTrasferta)) {
             $sql = "INSERT INTO partite (squadraCasa, squadraTrasferta, risultato, Squadre_idSquadre) VALUES ('" . $partita->getSquadraCasa() . "','" . $partita->getSquadraTrasferta() . "','" . $partita->getRisultato() . "','" . $partita->getSquadreIdSquadre() . "')";
             $risultato = $this->conn->query($sql);
             return $risultato;

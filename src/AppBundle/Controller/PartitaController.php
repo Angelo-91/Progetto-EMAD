@@ -72,7 +72,7 @@ class PartitaController extends Controller
     }
 
     /**
-     * @Route("/partite/getSquadraTrasferta/{id}",name="allPartiteSquadraCasa")
+     * @Route("/partite/getSquadraTrasferta/{id}",name="allPartiteSquadraTrasferta")
      * @Method("GET")
      */
     public function getPartiteBySquadraTrasferta($id){
@@ -111,7 +111,7 @@ class PartitaController extends Controller
     }
 
     /**
-     * @Route("/partite/cancellaPartita/{id}",name="inserisciPartita")
+     * @Route("/partite/cancellaPartita/{id}",name="cancellaPartita")
      * @Method("GET")
      */
     public function deletePartita($id){
