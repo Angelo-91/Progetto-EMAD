@@ -92,23 +92,23 @@ class ManagerNews
      */
     public function getNewsById($id){
 
-        $n=new News();
-        $sql="SELECT * from news WHERE idNews='$id'";
-        $result = $this->conn->query($sql);
-        if ($result->num_rows > 0) {
-            // output data of each row
-            if($row = $result->fetch_assoc()) {
-                $n->setIdNews($row["idNews"]);
-                $n->setTitolo($row["titolo"]);
-                $n->setContenuto($row["contenuto"]);
-                $n->setData($row["data"]);
-                $n->setSquadreIdSquadre($row["Squadre_idSquadre"]);
-                $n->setUrlImmagine($row["urlImmagine"]);
+            $n=new News();
+            $sql="SELECT * from news WHERE idNews='$id'";
+            $result = $this->conn->query($sql);
+            if ($result->num_rows > 0) {
+                // output data of each row
+                if($row = $result->fetch_assoc()) {
+                    $n->setIdNews($row["idNews"]);
+                    $n->setTitolo($row["titolo"]);
+                    $n->setContenuto($row["contenuto"]);
+                    $n->setData($row["data"]);
+                    $n->setSquadreIdSquadre($row["Squadre_idSquadre"]);
+                    $n->setUrlImmagine($row["urlImmagine"]);
+                }
+                return $n;
+            } else {
+                return null;
             }
-            return $n;
-        } else {
-            return null;
-        }
     }
 
     /**

@@ -36,6 +36,37 @@ class ManagerGiocatore
         $this->conn=$this->db->connect();
     }
 
+    public function getGiocatoreById($id){
+
+        $n=new Giocatore();
+        $sql="SELECT * from giocatori WHERE idGiocatori='$id'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            if($row = $result->fetch_assoc()) {
+                $n->setNome($row["nome"]);
+                $n->setCognome($row["cognome"]);
+                $n->setIdGiocatori($row["idGiocatori"]);
+                $n->setGolFatti($row["golFatti"]);
+                $n->setGolSubiti($row["golSubiti"]);
+                $n->setAssist($row["assist"]);
+                $n->setAmmonizioni($row["ammonizioni"]);
+                $n->setEspulsioni($row["espulsioni"]);
+                $n->setPresenze($row["presenze"]);
+                $n->setRuolo($row["ruolo"]);
+                $n->setValore($row["valore"]);
+                $n->setResidenza($row["residenza"]);
+                $n->setNazionalita($row["nazionalita"]);
+                $n->setEmail($row["email"]);
+                $n->setDataDiNascita($row["dataDiNascita"]);
+                $n->setSquadreIdSquadre($row["Squadre_idSquadre"]);
+                $n->setUrlImmagine($row["urlImmagine"]);
+            }
+            return $n;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @param $idSquadra
@@ -82,6 +113,7 @@ class ManagerGiocatore
 
     }
 
+
     public function insert(Giocatore $g)
     {
 
@@ -95,6 +127,50 @@ class ManagerGiocatore
     /**
      *
      */
+    public function delete($id)
+    {
+
+        $g = $this->getGiocatoreById($id);
+        if ($g != null) {
+            $query = "DELETE FROM giocatori WHERE idGiocatori='$id'";
+            $this->conn->query($query);
+            $url = "../web/immaginiApp/Giocatori/" . $g->getUrlImmagine();
+            unlink($url);
+            return $url;
+        } else return null;
+    }
+    public function aggiornaGiocatore(Giocatore $g){
+
+        $n=$g->getNome();
+        $c=$g->getCognome();
+        $id=$g->getIdGiocatori();
+        $gF=$g->getGolFatti();
+        $gS=$g->getGolSubiti();
+        $a=$g->getAssist();
+        $am=$g->getAmmonizioni();
+        $esp=$g->getEspulsioni();
+        $pre=$g->getPresenze();
+        $ru=$g->getRuolo();
+        $va=$g->getValore();
+        $res=$g->getResidenza();
+        $naz=$g->getNazionalita();
+        $em=$g->getEmail();
+        $dat=$g->getDataDiNascita();
+        $url=$g->getUrlImmagine();
+
+        $sql = "UPDATE giocatori SET  golFatti = '$gF', golSubiti = '$gS', assist = '$a',
+        ammonizioni = '$am', espulsioni = '$esp', presenze = '$pre', ruolo = '$ru', valore = '$va', nome = '$n',
+        cognome = '$c', residenza = '$res', nazionalita = '$naz', email = '$em',
+        dataDiNascita = '$dat', urlImmagine = '$url' WHERE idGiocatori = $id";
+        if (!$this->conn->query($sql)) {
+            die($this->conn->error);
+            return null;
+        }
+        else  return $g;
+
+    }
+
+
     public function __destruct()
     {
         // TODO: Implement __destruct() method.
