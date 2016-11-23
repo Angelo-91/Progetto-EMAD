@@ -132,6 +132,22 @@ class ManagerNews
     }
 
 
+    public function aggiornaNews(News $news){
+
+            $idNews=$news->getIdNews();
+            $titolo=$news->getTitolo();
+            $contenuto=$news->getContenuto();
+            $data=$news->getData();
+            $urlImmagine=$news->getUrlImmagine();
+            $sql = "UPDATE news SET  titolo='$titolo' , contenuto='$contenuto' , data='$data', urlImmagine='$urlImmagine'  WHERE idNews='$idNews'";
+            if (!$this->conn->query($sql)) {
+                die($this->conn->error);
+                return null;
+            }
+            else  return $news;
+
+    }
+
     /**
      *
      */

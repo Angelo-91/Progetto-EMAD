@@ -82,4 +82,50 @@ class NewsController extends Controller
         else
             return new Response("eliminata la notizia  con id:".$id);
     }
+
+    /**
+     * @Route("/news/aggiorna",name="aggiornaNews")
+     * @Method("POST")
+     */
+    public function aggiornaNews(Request $req){
+        $mN = new ManagerNews();
+        $news=$mN->getNewsById($req->request->get("i"));
+        if($news!=null){
+            $news->setTitolo($req->request->get("t"));
+            $news->setContenuto($req->request->get("c"));
+            $news->setData($req->request->get("d"));
+            $pathFinal = Utility::loadFile("file", "News");
+            if ($pathFinal != null) {
+                $urlEsistente=$news->getUrlImmagine();
+                if(strcmp($urlEsistente,$pathFinal)!=0){
+                    $url="../web/immaginiApp/News/".$urlEsistente;
+                    unlink($url);
+                    $news->setUrlImmagine($pathFinal);
+                    if($mN->aggiornaNews($news)!=null)
+                        return new Response("news modificata");
+                    else return new Response("modifica non riuscita");
+                }
+            }
+            else return new Response("problema nel modificare la foto");
+
+
+        }
+        else return new Response("non esiste la notizia che vuoi modifica");
+    }
+
+    /**
+     * @Route("/Gnews/{id}",name="getNewsId")
+     * @Method("GET")
+     */
+    public function getNewsById($id){
+        $m=new ManagerNews();
+
+        $news = $m->getNewsById($id);
+        if($news!=null){
+            return new Response($news);
+        } else {
+            return new Response("La news con questo id: ".$id." non esiste");
+        }
+    }
+
 }
