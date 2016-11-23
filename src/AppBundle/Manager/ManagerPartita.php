@@ -23,7 +23,7 @@ class ManagerPartita
         $this->conn=$this->db->connect();
     }
 
-    public function get(){
+    public function getAll(){
         $partite = array();
         $sql = "SELECT * from partite";
         $result = $this->conn->query($sql);
@@ -43,7 +43,7 @@ class ManagerPartita
             return $partite;
         }
         else {
-            return null;
+            return FALSE;
         }
     }
 
@@ -61,7 +61,7 @@ class ManagerPartita
             $toReturnPartita->setIdPartita($row["idPartita"]);
             return $toReturnPartita;
         } else {
-            return null;
+            return FALSE;
         }
 
     }
@@ -84,7 +84,7 @@ class ManagerPartita
             }
             return $toReturnPartite;
         } else {
-            return null;
+            return FALSE;
         }
     }
 
@@ -106,7 +106,7 @@ class ManagerPartita
             }
             return $toReturnPartite;
         } else {
-            return null;
+            return FALSE;
         }
     }
 
@@ -114,29 +114,29 @@ class ManagerPartita
         $managerSquadra = new ManagerSquadra();
         $squadraCasa = $partita->getSquadraCasa();
         $squadraTrasferta = $partita->getSquadraTrasferta();
-        if($managerSquadra->getByName($squadraCasa) AND $managerSquadra->getByName($squadraTrasferta)) {
+        if($managerSquadra->getByName($squadraCasa) && $managerSquadra->getByName($squadraTrasferta)) {
             $sql = "INSERT INTO partite (squadraCasa, squadraTrasferta, risultato, Squadre_idSquadre) VALUES ('" . $partita->getSquadraCasa() . "','" . $partita->getSquadraTrasferta() . "','" . $partita->getRisultato() . "','" . $partita->getSquadreIdSquadre() . "')";
             $risultato = $this->conn->query($sql);
             return $risultato;
         } else {
-            return null;
+            return FALSE;
         }
     }
 
     public function deletePartita($idPartita){
-        $sql = "DELETE FROM partite WHERE idPartita='$idPartita'";
-        $risultato = $this->conn->query($sql);
-        if($risultato!=null){
+        $controllo = $this->getPartitaById($idPartita);
+        if($controllo != FALSE){
+            $sql = "DELETE FROM partite WHERE idPartita='$idPartita'";
+            $risultato = $this->conn->query($sql);
             return $risultato;
         } else {
-            return null;
+            return FALSE;
         }
     }
 
     public function aggiornaPartita(Partita $partita){
-        $managerPartita = new ManagerPartita();
-        $risultato = $managerPartita->getPartitaById($partita->getIdPartita());
-        if($risultato!=null){
+        $risultato = $this->getPartitaById($partita->getIdPartita());
+        if($risultato!=FALSE){
             $risultato = $partita->getRisultato();
             $squadraCasa = $partita->getSquadraCasa();
             $squadraTrasferta = $partita->getSquadraTrasferta();
@@ -144,13 +144,9 @@ class ManagerPartita
             $id = $partita->getIdPartita();
             $sql = "UPDATE partite SET risultato='$risultato', squadraCasa='$squadraCasa' , squadraTrasferta='$squadraTrasferta' , Squadre_idSquadre='$sqEx' WHERE idPartita='$id'";
             $ri = $this->conn->query($sql);
-            if($ri!=null){
-                return $ri;
-            } else {
-                return null;
-            }
+            return $ri;
         } else {
-            return null;
+            return FALSE;
         }
     }
 

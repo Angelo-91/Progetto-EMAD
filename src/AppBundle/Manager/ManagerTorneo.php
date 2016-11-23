@@ -21,7 +21,7 @@ class ManagerTorneo
         $this->conn=$this->db->connect();
     }
 
-    public function get(){
+    public function getAll(){
         $tornei = array();
         $sql = "SELECT * from tornei";
         $result = $this->conn->query($sql);
@@ -38,23 +38,31 @@ class ManagerTorneo
             return $tornei;
         }
         else {
-            return null;
+            return FALSE;
         }
     }
 
 
 
     public function insertTorneo(Torneo $torneo){
-        $sql ="INSERT INTO tornei (nomeTorneo) VALUE ('".$torneo->getNomeTorneo()."')";
-        $result = $this->conn->query($sql);
-        return $result;
+        if(strlen($torneo->getNomeTorneo())>0) {
+            $sql = "INSERT INTO tornei (nomeTorneo) VALUE ('" . $torneo->getNomeTorneo() . "')";
+            $result = $this->conn->query($sql);
+            return $result;
+        } else {
+            return FALSE;
+        }
+
     }
 
-    public function deleteTorneo(Torneo $torneo){
-        $idTorneo = $torneo->getIdTornei();
-        $sql = "DELETE FROM tornei WHERE idTornei = '$idTorneo'";
-        $result = $this->conn->query($sql);
-        return $result;
+    public function deleteTorneo($id){
+        if($this->getTorneoById($id)!=FALSE) {
+            $sql = "DELETE FROM tornei WHERE idTornei = '$id'";
+            $result = $this->conn->query($sql);
+            return $result;
+        } else {
+            return FALSE;
+        }
 
     }
 
@@ -69,24 +77,37 @@ class ManagerTorneo
             $torneo->setNomeTorneo($row["nomeTorneo"]);
             return $torneo;
         } else{
-            return null;
+            return FALSE;
         }
     }
 
     public function updateTorneo($nomeOriginale, $nomeNuovo){
-        $torneo = new Torneo();
-        $sql = "SELECT * FROM tornei WHERE nomeTorneo='$nomeOriginale'";
-        $risultato = $this->conn->query($sql);
-        if($risultato->num_rows > 0) {
-            $row = $risultato->fetch_assoc();
-            $id=$row["idTornei"];
-            $sql = "UPDATE tornei SET nomeTorneo='$nomeNuovo' WHERE idTornei='$id'";
-            $result = $this->conn->query($sql);
-            return $result;
-        } else{
-            return null;
+        $controllo = $this->getTorneoByNome($nomeOriginale);
+            if($controllo != FALSE ){
+                    $id=$controllo->getIdTornei();
+                    $sql = "UPDATE tornei SET nomeTorneo='$nomeNuovo' WHERE idTornei='$id'";
+                    $result = $this->conn->query($sql);
+                    return $result;
+            } else{
+                    return FALSE;
+            }
+    }
+
+
+    public function getTorneoById($id){
+        $sql = "SELECT * FROM tornei WHERE idTornei='$id'";
+        $result = $this->conn->query($sql);
+        if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            $t = new Torneo();
+            $t->setIdTornei($row["idTornei"]);
+            $t->setNomeTorneo($row["nomeTorneo"]);
+            return $t;
+        } else {
+            return FALSE;
         }
     }
+
 
     public function __destruct()
     {

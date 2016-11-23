@@ -24,8 +24,8 @@ class TorneoController extends Controller
      */
     public function getAllTornei(){
         $manager = new ManagerTorneo();
-        $risultati = $manager->get();
-        if($risultati!=null){
+        $risultati = $manager->getAll();
+        if($risultati!=FALSE){
             $toRetutn = "";
             foreach ($risultati as $s){
                 $toRetutn = $toRetutn.$s;
@@ -33,7 +33,7 @@ class TorneoController extends Controller
             return new Response($toRetutn);
         }
         else {
-            return new Response("problemi");
+            return new Response("Non sono presenti elementi all'interno della tabella Tornei");
         }
     }
 
@@ -46,44 +46,70 @@ class TorneoController extends Controller
         $manager = new ManagerTorneo();
         $torneo->setNomeTorneo($req->request->get("nome"));
         $risultati = $manager->insertTorneo($torneo);
-        if($risultati!=null){
-            return new Response("Inserimento OK");
+        if($risultati!=FALSE){
+            return new Response("Inserito il torneo: ".$torneo->getNomeTorneo()." nella tabella Tornei");
         }
         else {
-            return new Response("problemi");
+            return new Response("Problemi con l'inserimento");
         }
     }
     /**
-     * @Route("/torneo/delete/{nome}",name="torneoDelete")
+     * @Route("/torneo/delete/{id}",name="torneoDelete")
      * @Method("GET")
      */
-    public function deleteTorneo ($nome){
+    public function deleteTorneo ($id){
         $managerTorneo = new ManagerTorneo();
-        $daEliminare = $managerTorneo->getTorneoByNome($nome);
-        if($daEliminare==null){
-            return new Response("Non è possibile eliminare un torneo con questo nome ".$nome." perchè non esiste");
+        $daEliminare = $managerTorneo->getTorneoById($id);
+        if($daEliminare==FALSE){
+            return new Response("Non è possibile eliminare un torneo con questo nome ".$id." perchè non esiste");
         } else {
-            $managerTorneo->deleteTorneo($daEliminare);
-            return new Response("Torneo: ".$nome." eliminato correttamente");
+            $managerTorneo->deleteTorneo($id);
+            return new Response("Torneo: ".$id." eliminato correttamente");
         }
     }
 
 
     /**
-     * @Route("/torneo/update",name="torneoInsert")
+     * @Route("/torneo/update",name="torneoUpdate")
      * @Method("POST")
      */
     public function updateTorneo(Request $req){
         $managerTorneo = new ManagerTorneo();
         $nomeOriginale = $req->request->get("nomeOriginale");
         $nomeNuovo = $req->request->get("nomeNuovo");
-        $daUppare = $managerTorneo->getTorneoByNome($nomeOriginale);
-        if($daUppare==null){
+        $risultato = $managerTorneo->updateTorneo($nomeOriginale, $nomeNuovo);
+        if($risultato==FALSE){
             return new Response("Non è possibile modificare un torneo con questo nome ".$nomeOriginale." perchè non esiste");
         } else {
-            $managerTorneo->updateTorneo($nomeOriginale, $nomeNuovo);
             return new Response("Torneo: ".$nomeOriginale." aggiornato in: ".$nomeNuovo);
         }
     }
 
+    /**
+     * @Route("/torneo/get/{id}",name="torneoGetById")
+     * @Method("GET")
+     */
+    public function getTorneoById($id){
+        $managerTorneo = new ManagerTorneo();
+        $risultato = $managerTorneo->getTorneoById($id);
+        if($risultato!=FALSE){
+            return new Response($risultato);
+        } else {
+            return new Response("Hai cercato un id ".$id." torneo non esistente");
+        }
+    }
+
+    /**
+     * @Route("/torneo/getByNome/{nome}",name="torneoGetByNome")
+     * @Method("GET")
+     */
+    public function getTorneoByNome($nome){
+        $managerTorneo = new ManagerTorneo();
+        $risultato = $managerTorneo->getTorneoByNome($nome);
+        if($risultato!=FALSE){
+            return new Response($risultato);
+        } else {
+            return new Response("Hai cercato torneo (".$nome.") non esistente");
+        }
+    }
 }

@@ -26,7 +26,7 @@ class PartitaController extends Controller
      */
     public function getAllPartite(){
         $manager = new ManagerPartita();
-        $risultati = $manager->get();
+        $risultati = $manager->getAll();
         if($risultati!=null){
             $toRetutn = "";
             foreach ($risultati as $s){
@@ -35,7 +35,7 @@ class PartitaController extends Controller
             return new Response($toRetutn);
         }
         else {
-            return new Response("problemi");
+            return new Response("Non ci sono elementi nella tabella partite");
         }
     }
 
@@ -46,7 +46,7 @@ class PartitaController extends Controller
     public function getPartitaById($id){
         $managerPartite = new ManagerPartita();
         $risultato = $managerPartite->getPartitaById($id);
-        if($risultato!=null){
+        if($risultato!=FALSE){
             return new Response($risultato);
         } else {
             return new Response("La partita con questo id: ".$id." non esiste");
@@ -54,38 +54,38 @@ class PartitaController extends Controller
     }
 
     /**
-     * @Route("/partite/getSquadraCasa/{id}",name="allPartiteSquadraCasa")
+     * @Route("/partite/getSquadraCasa/{sc}",name="allPartiteSquadraCasa")
      * @Method("GET")
      */
-    public function getPartiteBySquadraCasa($id){
+    public function getPartiteBySquadraCasa($sc){
         $managerPartite = new ManagerPartita();
-        $risultato = $managerPartite->getPartitaBySquadraCasa($id);
-        if($risultato!=null){
+        $risultato = $managerPartite->getPartitaBySquadraCasa($sc);
+        if($risultato!=FALSE){
             $toRetutn = "";
             foreach ($risultato as $s){
                 $toRetutn = $toRetutn.$s;
             }
             return new Response($toRetutn);
         } else {
-            return new Response("La partita con questo id: ".$id." non esiste");
+            return new Response("Le partite con questa squadra: ".$sc." che gioca in casa non esiste");
         }
     }
 
     /**
-     * @Route("/partite/getSquadraTrasferta/{id}",name="allPartiteSquadraCasa")
+     * @Route("/partite/getSquadraTrasferta/{st}",name="allPartiteSquadraTrasferta")
      * @Method("GET")
      */
-    public function getPartiteBySquadraTrasferta($id){
+    public function getPartiteBySquadraTrasferta($st){
         $managerPartite = new ManagerPartita();
-        $risultato = $managerPartite->getPartitaBySquadraTrasferta($id);
-        if($risultato!=null){
+        $risultato = $managerPartite->getPartitaBySquadraTrasferta($st);
+        if($risultato!=FALSE){
             $toRetutn = "";
             foreach ($risultato as $s){
                 $toRetutn = $toRetutn.$s;
             }
             return new Response($toRetutn);
         } else {
-            return new Response("La partita con questo id: ".$id." non esiste");
+            return new Response("La partite con questa squadra: ".$st." che gioca in trasferta non esiste");
         }
     }
 
@@ -103,7 +103,7 @@ class PartitaController extends Controller
         $partita->setRisultato($req->request->get("risultato"));
         $partita->setSquadreIdSquadre($req->request->get("squadraEsterna"));
         $ris = $managerPartita->insertPartita($partita);
-        if ($ris != null) {
+        if ($ris != FALSE) {
             return new Response("Inserimento avvenuto con successo");
         } else {
             return new Response("Problemi con l'inserimento");
@@ -111,16 +111,16 @@ class PartitaController extends Controller
     }
 
     /**
-     * @Route("/partite/cancellaPartita/{id}",name="inserisciPartita")
+     * @Route("/partite/cancellaPartita/{id}",name="cancellaPartita")
      * @Method("GET")
      */
     public function deletePartita($id){
         $managerPartite = new ManagerPartita();
         $ris = $managerPartite->deletePartita($id);
-        if($ris!=null){
+        if($ris!=FALSE){
             return new Response("Cancellazione di partita con questo id: ".$id." avvenuta con successo");
         } else {
-            return new Response("Problemi con la cancellazione");
+            return new Response("La partita con questo id: ".$id." non esiste");
         }
     }
 
@@ -131,16 +131,17 @@ class PartitaController extends Controller
     public function aggiornaPartita(Request $req){
         $managerPartite = new ManagerPartita();
         $partita = new Partita();
-        $partita->setIdPartita($req->request->get("idPartita"));
+        $id = $req->request->get("idPartita");
+        $partita->setIdPartita($id);
         $partita->setSquadraCasa($req->request->get("squadraCasa"));
         $partita->setSquadraTrasferta($req->request->get("squadraTrasferta"));
         $partita->setRisultato($req->request->get("risultato"));
         $partita->setSquadreIdSquadre($req->request->get("squadraEsterna"));
         $ris = $managerPartite->aggiornaPartita($partita);
         if($ris!=null){
-            return new Response("Aggiornamento avvenuto con successo");
+            return new Response("Aggiornamento della partita con questo id: ".$id." avvenuto con successo");
         } else {
-            return new Response("Problemi con l'aggiornamento");
+            return new Response("La partita con questo id: ".$id." non esiste");
         }
     }
 }
