@@ -87,7 +87,7 @@ class NewsController extends Controller
      * @Route("/news/aggiorna",name="aggiornaNews")
      * @Method("POST")
      */
-    public function aggiornaPartita(Request $req){
+    public function aggiornaNews(Request $req){
         $mN = new ManagerNews();
         $news=$mN->getNewsById($req->request->get("i"));
         if($news!=null){

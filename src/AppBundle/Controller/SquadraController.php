@@ -89,7 +89,36 @@ class SquadraController extends Controller
         else
         return new Response("eliminata la squadra con id:".$id);
     }
+    /**
+     * @Route("/squadra/aggiorna",name="aggiornaSquadra")
+     * @Method("POST")
+     */
+    public function aggiornaSquadra(Request $req){
+        $mN = new ManagerSquadra();
+        $squadra=$mN->getById($req->request->get("i"));
+        if($squadra!=null){
+            $squadra->setNome($req->request->get("n"));
+            $squadra->setAnnoFondazione($req->request->get("a"));
+            $squadra->setPresidente($req->request->get("p"));
+            $squadra->setSedeLegale($req->request->get("s"));
+            $pathFinal = Utility::loadFile("file", "Scudetti");
+            if ($pathFinal != null) {
+                $urlEsistente=$squadra->getUrlScudetto();
+                if(strcmp($urlEsistente,$pathFinal)!=0){
+                    $url="../web/immaginiApp/Scudetti/".$urlEsistente;
+                    unlink($url);
+                    $squadra->setUrlScudetto($pathFinal);
+                    if($mN->aggiornaSquadra($squadra)!=null)
+                        return new Response("squadra modificata");
+                    else return new Response("modifica non riuscita");
+                }
+            }
+            else return new Response("problema nel modificare la foto");
 
+
+        }
+        else return new Response("non esiste la squadra che vuoi modifica");
+    }
 
 
 }

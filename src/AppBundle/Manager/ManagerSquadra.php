@@ -161,6 +161,27 @@ class ManagerSquadra
 
     }
 
+    public function aggiornaSquadra(Squadra $s){
+
+        $id=$s->getIdSquadre();
+        $a=$s->getAnnoFondazione();
+        $n=$s->getNome();
+        $p=$s->getPresidente();
+        $se=$s->getSedeLegale();
+        $u=$s->getUrlScudetto();
+
+
+
+
+
+        $sql = "UPDATE squadre SET nome='$n' , annoFondazione='$a' , urlScudetto='$u', presidente='$p', sedeLegale='$se'  WHERE idSquadre='$id'";
+        if (!$this->conn->query($sql)) {
+            die($this->conn->error);
+            return null;
+        }
+        else  return $s;
+
+    }
     /**
      *
      */
