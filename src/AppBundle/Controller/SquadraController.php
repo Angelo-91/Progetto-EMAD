@@ -69,7 +69,7 @@ class SquadraController extends Controller
 
         $g=new ManagerSquadra();
         $squadra=$g->getById($id);
-        if($squadra!=null)
+        if($squadra!=FALSE)
             return new Response($squadra);
         else
             return new Response("non esiste la squadra cercata");
