@@ -105,7 +105,7 @@ class ManagerSquadra
             }
             return $s;
         } else {
-            return null;
+            return FALSE;
         }
 
     }
