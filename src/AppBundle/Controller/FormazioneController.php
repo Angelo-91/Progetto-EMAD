@@ -85,5 +85,46 @@ class FormazioneController extends Controller
         }
     }
 
+    /**
+     * @Route("/formazione/elimina/{id}",name="eliminaFormazioniByPartita")
+     * @Method("GET")
+     */
+    public function deleteFormazioniByIdPartita($id){
+
+        $m=new ManagerFormazione();
+        $p=$m->deleteFormazioniById($id);
+        if($p==null)
+            return new Response("nessuna formazione da eliminare con id: ".$id);
+        else
+            return new Response("eliminate le formazioni  con id-partita: ".$id);
+    }
+
+    /**
+     * @Route("/formazione/aggiorna",name="aggiornaFormazione")
+     * @Method("POST")
+     */
+    public function aggiornaFormazione(Request $re){
+        $mF = new ManagerFormazione();
+        $mP=new ManagerPartita();
+        $mG=new ManagerGiocatore();
+        $f=new Formazione();
+        $p=$mP->getPartitaById($re->request->get("part"));
+        $g=$mG->getGiocatoreById($re->request->get("gio"));
+        if($p!=null AND $g!=null ){
+            $f->setGiocatoriIdGiocatori($re->request->get("gio"));
+            $f->setPartiteIdPartita($re->request->get("part"));
+            $f->setAmmonizioni($re->request->get("am"));
+            $f->setAssist($re->request->get("as"));
+            $f->setEspulsioni($re->request->get("es"));
+            $f->setGolFatti($re->request->get("gF"));
+            $f->setGolSubiti($re->request->get("gS"));
+            $f->setRuolo($re->request->get("ru"));
+            $f->setVotoPersonale($re->request->get("v"));
+            $f->setMinutiGiocati($re->request->get("min"));
+            $mF->aggiornaFormazione($f);
+            return new Response("formazione  modificata");
+        }
+        else return new Response("non esiste la formazione che vuoi modificare");
+    }
 
 }

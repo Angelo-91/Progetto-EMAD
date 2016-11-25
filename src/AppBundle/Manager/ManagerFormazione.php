@@ -51,6 +51,29 @@ class ManagerFormazione
 
     }
 
+    public function aggiornaFormazione(Formazione $f){
+
+        $gio=$f->getGiocatoriIdGiocatori();
+        $part=$f->getPartiteIdPartita();
+        $amm=$f->getAmmonizioni();
+        $ass=$f->getAssist();
+        $esp=$f->getEspulsioni();
+        $gol=$f->getGolFatti();
+        $gS=$f->getGolSubiti();
+        $ru=$f->getRuolo();
+        $vo=$f->getVotoPersonale();
+        $min=$f->getMinutiGiocati();
+
+        $sql = "UPDATE formazioni SET  golFatti='$gol',golSubiti='$gS',assist='$ass', ruolo='$ru', minutiGiocati='$min',
+                votoPersonale='$vo'
+                ,ammonizioni='$amm',espulsioni='$esp'  WHERE Giocatori_idGiocatori='$gio' AND Partite_idPartita='$part'";
+        if (!$this->conn->query($sql)) {
+            die($this->conn->error);
+            return null;
+        }
+        else  return $f;
+
+    }
 
     public function getFormazioneConDatiGiocatore($idPartita){
         $statistichePerGiocatore=array();
@@ -82,7 +105,20 @@ class ManagerFormazione
 
     }
 
+    public function deleteFormazioniById($id){
 
+        $mP=new ManagerPartita();
+        $p=$mP->getPartitaById($id);
+        if($p!=false){
+            $query="DELETE FROM formazioni WHERE Partite_idPartita='$id'";
+            $this->conn->query($query);
+            return $p;
+        }
+        else return null;
+
+
+
+    }
 
     public function __destruct()
     {
