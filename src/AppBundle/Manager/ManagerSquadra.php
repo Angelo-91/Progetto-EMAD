@@ -43,8 +43,9 @@ class ManagerSquadra
     {
         $query="INSERT INTO squadre (nome, annoFondazione, presidente, sedeLegale, urlScudetto) VALUES ('".$squadra->getNome()."', '".$squadra->getAnnoFondazione()."', '".$squadra->getPresidente()."', '".$squadra->getSedeLegale()."', '".$squadra->geturlScudetto()."')";
         if (!$this->conn->query($query)) {
-            die($this->conn->error);
+            return null;
         }
+        else return $squadra;
 
 
     }

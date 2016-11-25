@@ -37,8 +37,10 @@ class SquadraController extends Controller
         $pathFinal=Utility::loadFile("file","Scudetti");
         if($pathFinal!=null) {
             $s->setUrlScudetto($pathFinal);
-            $m->insert($s);
-            return new Response("squadra inserita con id" . $re->request->get("i"));
+            if($m->insert($s)!=null)
+                return new Response("squadra inserita con id" . $re->request->get("i"));
+            else
+                return new Response("problema con l inserimento della squadra");
         }
         else return new Response("problema nel caricare la foto");
     }

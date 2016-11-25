@@ -7,6 +7,7 @@
  */
 
 namespace AppBundle\Manager;
+use AppBundle\Model\Check;
 use AppBundle\Model\User;
 use AppBundle\Utility\DB;
 
@@ -22,6 +23,9 @@ class ManagerUser
         $this->conn=$this->db->connect();
     }
 
+    /**
+     * @return array|null
+     */
     public function get(){
         $user = array();
         $sql = "SELECT * from user";
@@ -42,6 +46,33 @@ class ManagerUser
         else {
             return null;
         }
+    }
+
+    /**
+     * @param User $utente
+     * @return bool
+     */
+    public function registrazione(User $utente)
+    {
+        return false;
+
+    }
+
+    /**
+     * @param User $utente
+     * @return bool
+     */
+    public function login(User $utente){
+        return false;
+    }
+
+
+    /**
+     * @param Check $check
+     * @return bool
+     */
+    public function logout(Check $check){
+        return false;
     }
 
     public function __destruct()
