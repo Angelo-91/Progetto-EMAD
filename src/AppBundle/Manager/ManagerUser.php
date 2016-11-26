@@ -8,6 +8,7 @@
 
 namespace AppBundle\Manager;
 use AppBundle\Model\Check;
+use AppBundle\Model\Squadra;
 use AppBundle\Model\User;
 use AppBundle\Utility\DB;
 
@@ -52,10 +53,43 @@ class ManagerUser
      * @param User $utente
      * @return bool
      */
-    public function registrazione(User $utente)
+    public function registrazione(User $utente, $nomeSquadra)
     {
-        return false;
+        $managerSquadra = new ManagerSquadra();
+        $res = $managerSquadra->getByName($nomeSquadra);
+        if($res != null){
+            return FALSE;
+        } else {
+            $squadra = new Squadra();
+            $squadra->setNome($nomeSquadra);
+            $managerSquadra->insert($squadra);
+            $estrapolaId = $managerSquadra->getByName($nomeSquadra);
+            $id = $estrapolaId->getIdSquadre();
+            $utente->setSquadreIdSquadre($id);
+            $controllo = $this->getUserByEmail($utente->getEmail());
+            if($controllo == FALSE) {
+                $sql = "INSERT INTO user (email, password, Squadre_idSquadre) VALUES ('" . $utente->getEmail() . "','" . $utente->getPassword() . "','" . $utente->getSquadreIdSquadre() . "')";
+                $ris = $this->conn->query($sql);
+                return $ris;
+            } else {
+                return FALSE;
+            }
+        }
+    }
 
+    public function getUserByEmail($email){
+        $sql = "SELECT * FROM user WHERE email='$email'";
+        $res = $this->conn->query($sql);
+        if($res->num_rows > 0){
+            $user = new User();
+            $row = $res->fetch_assoc();
+            $user->setEmail($row["email"]);
+            $user->setPassword($row["password"]);
+            $user->setSquadreIdSquadre($row["Squadre_idSquadre"]);
+            return $user;
+        } else {
+            return FALSE;
+        }
     }
 
     /**
