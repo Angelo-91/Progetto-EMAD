@@ -52,9 +52,9 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/registrati",name="registrazioneUser")
-     * @Method("POST")
-     */
+ * @Route("/user/registrati",name="registrazioneUser")
+ * @Method("POST")
+ */
     public function registraUtente(Request $request){
         $manager = new ManagerUser();
         $utente = new User();
@@ -65,6 +65,23 @@ class UserController extends Controller
             return new Response("Registrazione avvenuta con successo");
         } else {
             return new Response("Problemi con la registrazione");
+        }
+    }
+
+    /**
+     * @Route("/user/login",name="loginUser")
+     * @Method("POST")
+     */
+    public function loginUtente(Request $request){
+        $manager = new ManagerUser();
+        $utente = new User();
+        $utente->setEmail($request->request->get("email"));
+        $utente->setPassword($request->request->get("password"));
+        $ris = $manager->login($utente);
+        if($ris != FALSE){
+            return new Response("Login success");
+        } else {
+            return new Response("Login failed");
         }
     }
 

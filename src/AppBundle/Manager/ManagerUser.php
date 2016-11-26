@@ -11,6 +11,7 @@ use AppBundle\Model\Check;
 use AppBundle\Model\Squadra;
 use AppBundle\Model\User;
 use AppBundle\Utility\DB;
+use AppBundle\Utility\SessionStorage;
 
 class ManagerUser
 {
@@ -66,6 +67,7 @@ class ManagerUser
             $estrapolaId = $managerSquadra->getByName($nomeSquadra);
             $id = $estrapolaId->getIdSquadre();
             $utente->setSquadreIdSquadre($id);
+            $utente->setPassword(md5($utente->getPassword()));
             $controllo = $this->getUserByEmail($utente->getEmail());
             if($controllo == FALSE) {
                 $sql = "INSERT INTO user (email, password, Squadre_idSquadre) VALUES ('" . $utente->getEmail() . "','" . $utente->getPassword() . "','" . $utente->getSquadreIdSquadre() . "')";
@@ -97,9 +99,40 @@ class ManagerUser
      * @return bool
      */
     public function login(User $utente){
-        return false;
+        $emailUtente = $utente->getEmail();
+        $passwordUtente = $utente->getPassword();
+        $ris = $this->getUserByEmail($emailUtente);
+        if($ris == FALSE){
+            return FALSE;
+        } else {
+            $check = $this->checkPassword($passwordUtente,$ris->getPassword());
+            if($check == TRUE){
+                //aggiustare le sessioni, che non funzionano!!!
+                $this->creaSession($ris->getEmail(),$ris->getPassword(),$ris->getSquadreIdSquadre());
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        }
     }
 
+    private function creaSession($mail,$pass,$idSquadra){
+        $session = new SessionStorage();
+        $session->initialize();
+        $array = array();
+        $array[0] = $mail;
+        $array[1] = $pass;
+        $array[2] = $idSquadra;
+        $session->setItem('email',$array);
+    }
+
+    private function checkPassword($passwordInserita, $passwordSalvata){
+        if(strcmp(md5($passwordInserita),$passwordSalvata) == 0){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
     /**
      * @param Check $check
