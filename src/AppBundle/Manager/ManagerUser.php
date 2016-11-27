@@ -117,13 +117,10 @@ class ManagerUser
     }
 
     private function creaSession($mail,$pass,$idSquadra){
-        $session = new SessionStorage();
-        $session->initialize();
-        $array = array();
-        $array[0] = $mail;
-        $array[1] = $pass;
-        $array[2] = $idSquadra;
-        $session->setItem('email',$array);
+        session_start();
+        $_SESSION["mail"] = $mail;
+        $_SESSION["password"] = $pass;
+        $_SESSION["idSquadra"] = $idSquadra;
     }
 
     private function checkPassword($passwordInserita, $passwordSalvata){
