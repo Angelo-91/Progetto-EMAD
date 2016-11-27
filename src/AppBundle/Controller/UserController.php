@@ -85,4 +85,20 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @Route("/user/logout",name="logoutUser")
+     * @Method("GET")
+     */
+    public function logoutUtente(){
+        $manager = new ManagerUser();
+        $ris = $manager->logout();
+        if($ris != FALSE){
+            return new Response("Login success");
+        } else {
+            return new Response("Login failed");
+        }
+    }
+
+
+
 }

@@ -107,7 +107,6 @@ class ManagerUser
         } else {
             $check = $this->checkPassword($passwordUtente,$ris->getPassword());
             if($check == TRUE){
-                //aggiustare le sessioni, che non funzionano!!!
                 $this->creaSession($ris->getEmail(),$ris->getPassword(),$ris->getSquadreIdSquadre());
                 return TRUE;
             } else {
@@ -136,7 +135,7 @@ class ManagerUser
      * @return bool
      */
     public function logout(Check $check){
-        return false;
+        return session_destroy();
     }
 
     public function __destruct()
