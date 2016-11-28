@@ -122,7 +122,7 @@ class ManagerUser
     private function creaSession($mail,$pass,$idSquadra){
         session_start();
         $_SESSION["mail"] = $mail;
-        $_SESSION["password"] = $pass;
+        $_SESSION["password"] = md5($pass);
         $_SESSION["idSquadra"] = $idSquadra;
     }
 
@@ -131,6 +131,17 @@ class ManagerUser
             return TRUE;
         } else {
             return FALSE;
+        }
+    }
+
+    public function check($ogg){
+        if(isset($_SESSION["idSquadra"])){
+            if($_SESSION["idSquadra"]==$ogg)
+                return true;
+            else
+                return false;
+        } else {
+            return false;
         }
     }
 
