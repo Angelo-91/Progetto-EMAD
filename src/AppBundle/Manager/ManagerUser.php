@@ -63,6 +63,10 @@ class ManagerUser
         } else {
             $squadra = new Squadra();
             $squadra->setNome($nomeSquadra);
+            $squadra->setAnnoFondazione("Inserisci Anno");
+            $squadra->setPresidente("Inserisci Presidente");
+            $squadra->setSedeLegale("Inserisci sedeLegale");
+            $squadra->setUrlScudetto("Inserisci urlScudetto");
             $managerSquadra->insert($squadra);
             $estrapolaId = $managerSquadra->getByName($nomeSquadra);
             $id = $estrapolaId->getIdSquadre();
