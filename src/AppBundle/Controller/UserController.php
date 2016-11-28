@@ -100,5 +100,13 @@ class UserController extends Controller
     }
 
 
+    /**
+     * @Route("/effettuaLogin",name="FormloginUser")
+     * @Method("GET")
+     */
+    public function faiLogin(){
+       return $this->render("Site/login.html.twig");
+    }
+
 
 }
