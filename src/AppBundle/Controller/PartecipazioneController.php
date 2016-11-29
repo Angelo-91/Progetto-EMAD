@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Manager\ManagerUser;
 use AppBundle\Model\Partecipazione;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -96,11 +97,16 @@ class PartecipazioneController extends Controller
         $part->setVittorie($req->request->get("vittorie"));
         $part->setPareggi($req->request->get("pareggi"));
         $part->setSconfitte($req->request->get("sconfitte"));
-        $risultato = $manager->inserisciPartecipazione($part);
-        if($risultato!=FALSE){
-            return new Response("Partecipazione inserita correttamente");
+        $check = new ManagerUser();
+        if($check->check($part->getIdSquadre())){
+            $risultato = $manager->inserisciPartecipazione($part);
+            if($risultato!=FALSE){
+                return new Response("Partecipazione inserita correttamente");
+            } else {
+                return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            }
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response("Non hai l'autorizzazione per inserire questa partita",404);
         }
     }
 
@@ -118,11 +124,16 @@ class PartecipazioneController extends Controller
         $part->setVittorie($req->request->get("vittorie"));
         $part->setPareggi($req->request->get("pareggi"));
         $part->setSconfitte($req->request->get("sconfitte"));
-        $risultato = $manager->aggiornaPartecipazione($part);
-        if($risultato!=FALSE){
-            return new Response("Partecipazione modificata correttamente");
+        $check = new ManagerUser();
+        if($check->check($part->getIdSquadre())) {
+            $risultato = $manager->aggiornaPartecipazione($part);
+            if ($risultato != FALSE) {
+                return new Response("Partecipazione modificata correttamente");
+            } else {
+                return new Response("La partecipazione con questo id torneo: " . $part->getIdTornei() . " o con questo id squadra: " . $part->getIdSquadre() . " non esiste", 404);
+            }
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response("Non hai l'autorizzazione per aggiornare la partita",404);
         }
     }
 
@@ -136,11 +147,16 @@ class PartecipazioneController extends Controller
         $part = new Partecipazione();
         $part->setIdSquadre($req->request->get("idSquadra"));
         $part->setIdTornei($req->request->get("idTorneo"));
-        $risultato = $manager->eliminaPartecipazione($part);
-        if($risultato!=FALSE){
-            return new Response("Partecipazione eliminata correttamente");
+        $check = new ManagerUser();
+        if($check->check($part->getIdSquadre())) {
+            $risultato = $manager->eliminaPartecipazione($part);
+            if ($risultato != FALSE) {
+                return new Response("Partecipazione eliminata correttamente");
+            } else {
+                return new Response("La partecipazione con questo id torneo: " . $part->getIdTornei() . " o con questo id squadra: " . $part->getIdSquadre() . " non esiste", 404);
+            }
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response("Non hai l'autorizzazione per eliminare la partita",404);
         }
     }
 

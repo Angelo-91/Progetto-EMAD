@@ -77,11 +77,15 @@ class UserController extends Controller
         $utente = new User();
         $utente->setEmail($request->request->get("email"));
         $utente->setPassword($request->request->get("password"));
-        $ris = $manager->login($utente);
-        if($ris != FALSE){
-            return new Response("Login success");
+        if(!isset($_SESSION)) {
+            $ris = $manager->login($utente);
+            if ($ris != FALSE) {
+                return new Response("Login success");
+            } else {
+                return new Response("Login failed", 404);
+            }
         } else {
-            return new Response("Login failed",404);
+            return new Response("Sei già loggato",404);
         }
     }
 
@@ -91,11 +95,15 @@ class UserController extends Controller
      */
     public function logoutUtente(){
         $manager = new ManagerUser();
-        $ris = $manager->logout();
-        if($ris != FALSE){
-            return new Response("Logout success");
+        if(isset($_SESSION)) {
+            $ris = $manager->logout();
+            if ($ris != FALSE) {
+                return new Response("Logout success");
+            } else {
+                return new Response("Logout failed", 404);
+            }
         } else {
-            return new Response("Logout failed",404);
+            return new Response("Non puoi fare logout perche non sei loggato",404);
         }
     }
 
