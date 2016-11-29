@@ -93,9 +93,9 @@ class UserController extends Controller
         $manager = new ManagerUser();
         $ris = $manager->logout();
         if($ris != FALSE){
-            return new Response("Login success");
+            return new Response("Log-out success");
         } else {
-            return new Response("Login failed");
+            return new Response("Log-out failed");
         }
     }
 

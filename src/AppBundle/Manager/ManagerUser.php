@@ -146,10 +146,10 @@ class ManagerUser
     }
 
     /**
-     * @param Check $check
+     * @param
      * @return bool
      */
-    public function logout(Check $check){
+    public function logout(){
         return session_destroy();
     }
 
