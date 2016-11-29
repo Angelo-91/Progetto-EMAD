@@ -40,7 +40,7 @@ class NewsController extends Controller
 
                 return new Response($response);
             } else
-                return new Response("nessuna notizia di questa squadra");
+                return new Response("nessuna notizia di questa squadra",404);
 
 
 
@@ -71,7 +71,7 @@ class NewsController extends Controller
                 } else return new Response("problema nel caricare la foto");
             } else return new Response("vuoi inserire una news a una squadra che non esiste ");
         }
-        else return new Response("la risorsa non esiste",404);
+        else return new Response("non hai accesso a questa risorsa",404);
 
     }
     /**
@@ -92,7 +92,7 @@ class NewsController extends Controller
                 else
                     return new Response("eliminata la notizia  con id:" . $id);
             } else
-                return new Response("la risorsa non esiste", 404);
+                return new Response("non hai accesso a questa risorsa",404);
         } return new Response("la risorsa non esiste", 404);
     }
 
@@ -124,12 +124,12 @@ class NewsController extends Controller
                 }
                 else return new Response("problema nel modificare la foto");
             }
-            else return   new Response("la risorsa non esiste", 404);
+            else return  new Response("non hai accesso a questa risorsa",404);
 
 
 
         }
-        else return new Response("non esiste la notizia che vuoi modifica");
+        else return new Response("non esiste la notizia che vuoi modifica",404);
     }
 
     /**
@@ -143,7 +143,7 @@ class NewsController extends Controller
         if($news!=null){
             return new Response($news);
         } else {
-            return new Response("La news con questo id: ".$id." non esiste");
+            return new Response("La news con questo id: ".$id." non esiste",404);
         }
     }
 

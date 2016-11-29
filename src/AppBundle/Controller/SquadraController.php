@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Manager\ManagerSquadra;
+use AppBundle\Manager\ManagerUser;
 use AppBundle\Model\Squadra;
 use AppBundle\Utility\Utility;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -40,9 +41,9 @@ class SquadraController extends Controller
             if($m->insert($s)!=null)
                 return new Response("squadra inserita con id" . $re->request->get("i"));
             else
-                return new Response("problema con l inserimento della squadra");
+                return new Response("problema con l inserimento della squadra",404);
         }
-        else return new Response("problema nel caricare la foto");
+        else return new Response("problema nel caricare la foto",404);
     }
     /**
  * @Route("/squadra/all",name="allSquadre")
@@ -53,14 +54,17 @@ class SquadraController extends Controller
         $g=new ManagerSquadra();
         $squadre=$g->get();
         if($squadre!=null) {
-            $response = "";
+            $response = "{\"squadre\":[";
             foreach ($squadre as $s)
-                $response = $response . $s;
+                $response = $response . $s.",";
 
-            return new Response($response);
+            $response=$response."]}";
+            $r=new Response($response);
+            $r->headers->set('Content-Type', 'application/json');
+            return $r;
         }
         else{
-            return new Response("problemi");
+            return new Response("problemi",404);
         }
     }
     /**
@@ -71,25 +75,41 @@ class SquadraController extends Controller
 
         $g=new ManagerSquadra();
         $squadra=$g->getById($id);
-        if($squadra!=FALSE)
-            return new Response($squadra);
+        if($squadra!=FALSE){
+            $r=new Response($squadra);
+            $r->headers->set('Content-Type', 'application/json');
+            return $r;
+        }
+
         else
-            return new Response("non esiste la squadra cercata");
+            return new Response("non esiste la squadra cercata",404);
 
     }
     /**
      * @Route("/squadra/elimina/{id}",name="eliminasquadra")
      * @Method("GET")
      */
+    //PROTETTO
     public function deleteSquadraById($id){
 
 
         $m=new ManagerSquadra();
-        $url=$m->delete($id);
-        if($url==null)
-            return new Response("nessuna squadra da eliminare con id :".$id);
-        else
-        return new Response("eliminata la squadra con id:".$id);
+        $mU=new ManagerUser();
+        $s=$m->getById($id);
+        if($s!=null){
+            if($mU->check($s->getIdSquadre())){
+                $url=$m->delete($id);
+                if($url==null)
+                    return new Response("nessuna squadra da eliminare con id :".$id,404);
+                else
+                    return new Response("eliminata la squadra con id:".$id);
+            }
+            else
+                return new  Response("non ha l'accesso alla risorsa:",404);
+
+        }else
+            return new  Response("nessuna risorsa:",404);
+
     }
     /**
      * @Route("/squadra/aggiorna",name="aggiornaSquadra")
@@ -97,29 +117,33 @@ class SquadraController extends Controller
      */
     public function aggiornaSquadra(Request $req){
         $mN = new ManagerSquadra();
+        $uM=new ManagerUser();
         $squadra=$mN->getById($req->request->get("i"));
         if($squadra!=null){
-            $squadra->setNome($req->request->get("n"));
-            $squadra->setAnnoFondazione($req->request->get("a"));
-            $squadra->setPresidente($req->request->get("p"));
-            $squadra->setSedeLegale($req->request->get("s"));
-            $pathFinal = Utility::loadFile("file", "Scudetti");
-            if ($pathFinal != null) {
-                $urlEsistente=$squadra->getUrlScudetto();
-                if(strcmp($urlEsistente,$pathFinal)!=0){
-                    $url="../web/immaginiApp/Scudetti/".$urlEsistente;
-                    unlink($url);
-                    $squadra->setUrlScudetto($pathFinal);
-                    if($mN->aggiornaSquadra($squadra)!=null)
-                        return new Response("squadra modificata");
-                    else return new Response("modifica non riuscita");
+            if($uM->check($squadra->getIdSquadre())){
+                $squadra->setNome($req->request->get("n"));
+                $squadra->setAnnoFondazione($req->request->get("a"));
+                $squadra->setPresidente($req->request->get("p"));
+                $squadra->setSedeLegale($req->request->get("s"));
+                $pathFinal = Utility::loadFile("file", "Scudetti");
+                if ($pathFinal != null) {
+                    $urlEsistente=$squadra->getUrlScudetto();
+                    if(strcmp($urlEsistente,$pathFinal)!=0){
+                        $url="../web/immaginiApp/Scudetti/".$urlEsistente;
+                        unlink($url);
+                        $squadra->setUrlScudetto($pathFinal);
+                        if($mN->aggiornaSquadra($squadra)!=null)
+                            return new Response("squadra modificata");
+                        else return new Response("modifica non riuscita",404);
+                    }
                 }
+                else return new Response("problema nel modificare la foto",404);
             }
-            else return new Response("problema nel modificare la foto");
-
+            else
+                return new Response("non hai accesso alla risorsa",404);
 
         }
-        else return new Response("non esiste la squadra che vuoi modifica");
+        else return new Response("non esiste la squadra che vuoi modifica",404);
     }
 
 

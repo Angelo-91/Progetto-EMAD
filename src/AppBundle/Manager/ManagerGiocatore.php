@@ -139,6 +139,7 @@ class ManagerGiocatore
             return $url;
         } else return null;
     }
+
     public function aggiornaGiocatore(Giocatore $g){
 
         $n=$g->getNome();
