@@ -64,7 +64,7 @@ class UserController extends Controller
         if($ris != FALSE){
             return new Response("Registrazione avvenuta con successo");
         } else {
-            return new Response("Problemi con la registrazione");
+            return new Response("Problemi con la registrazione",404);
         }
     }
 
@@ -81,7 +81,7 @@ class UserController extends Controller
         if($ris != FALSE){
             return new Response("Login success");
         } else {
-            return new Response("Login failed");
+            return new Response("Login failed",404);
         }
     }
 
@@ -93,9 +93,9 @@ class UserController extends Controller
         $manager = new ManagerUser();
         $ris = $manager->logout();
         if($ris != FALSE){
-            return new Response("Log-out success");
+            return new Response("Logout success");
         } else {
-            return new Response("Log-out failed");
+            return new Response("Logout failed",404);
         }
     }
 

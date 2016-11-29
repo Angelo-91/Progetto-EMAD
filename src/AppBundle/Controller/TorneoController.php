@@ -26,14 +26,17 @@ class TorneoController extends Controller
         $manager = new ManagerTorneo();
         $risultati = $manager->getAll();
         if($risultati!=FALSE){
-            $toRetutn = "";
+            $toReturn = "{\"torneo\":[";
             foreach ($risultati as $s){
-                $toRetutn = $toRetutn.$s;
+                $toReturn = $toReturn.$s.",";
             }
-            return new Response($toRetutn);
+            $toReturn=$toReturn."]}";
+            $re = new Response($toReturn);
+            $re->headers->set('Content-Type', 'application/json');
+            return $re;
         }
         else {
-            return new Response("Non sono presenti elementi all'interno della tabella Tornei");
+            return new Response("Non sono presenti elementi all'interno della tabella Tornei",404);
         }
     }
 
@@ -50,7 +53,7 @@ class TorneoController extends Controller
             return new Response("Inserito il torneo: ".$torneo->getNomeTorneo()." nella tabella Tornei");
         }
         else {
-            return new Response("Problemi con l'inserimento");
+            return new Response("Problemi con l'inserimento",404);
         }
     }
     /**
@@ -64,7 +67,7 @@ class TorneoController extends Controller
             return new Response("Non è possibile eliminare un torneo con questo nome ".$id." perchè non esiste");
         } else {
             $managerTorneo->deleteTorneo($id);
-            return new Response("Torneo: ".$id." eliminato correttamente");
+            return new Response("Torneo: ".$id." eliminato correttamente",404);
         }
     }
 
@@ -81,7 +84,7 @@ class TorneoController extends Controller
         if($risultato==FALSE){
             return new Response("Non è possibile modificare un torneo con questo nome ".$nomeOriginale." perchè non esiste");
         } else {
-            return new Response("Torneo: ".$nomeOriginale." aggiornato in: ".$nomeNuovo);
+            return new Response("Torneo: ".$nomeOriginale." aggiornato in: ".$nomeNuovo,404);
         }
     }
 
@@ -93,9 +96,11 @@ class TorneoController extends Controller
         $managerTorneo = new ManagerTorneo();
         $risultato = $managerTorneo->getTorneoById($id);
         if($risultato!=FALSE){
-            return new Response($risultato);
+            $re = new Response($risultato);
+            $re->headers->set('Content-type','application/json');
+            return $re;
         } else {
-            return new Response("Hai cercato un id ".$id." torneo non esistente");
+            return new Response("Hai cercato un id ".$id." torneo non esistente",404);
         }
     }
 
@@ -107,9 +112,11 @@ class TorneoController extends Controller
         $managerTorneo = new ManagerTorneo();
         $risultato = $managerTorneo->getTorneoByNome($nome);
         if($risultato!=FALSE){
-            return new Response($risultato);
+            $re = new Response($risultato);
+            $re->headers->set('Content-type','application/json');
+            return $re;
         } else {
-            return new Response("Hai cercato torneo (".$nome.") non esistente");
+            return new Response("Hai cercato torneo (".$nome.") non esistente",404);
         }
     }
 }

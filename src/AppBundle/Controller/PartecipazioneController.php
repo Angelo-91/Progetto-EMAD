@@ -27,14 +27,17 @@ class PartecipazioneController extends Controller
         $manager = new ManagerPartecipazione();
         $risultati = $manager->getAll();
         if($risultati!=FALSE){
-            $toRetutn = "";
+            $toReturn = "{\"partita\":[";
             foreach ($risultati as $s){
-                $toRetutn = $toRetutn.$s;
+                $toReturn = $toReturn.$s.",";
             }
-            return new Response($toRetutn);
+            $toReturn = $toReturn."]}";
+            $re = new Response($toReturn);
+            $re->headers->set('Content-type','application/json');
+            return $re;
         }
         else {
-            return new Response("Non ci sono elementi nella tabella partecipazioni");
+            return new Response("Non ci sono elementi nella tabella partecipazioni",404);
         }
     }
 
@@ -50,9 +53,11 @@ class PartecipazioneController extends Controller
             foreach ($risultato as $s){
                 $toRetutn = $toRetutn.$s;
             }
-            return new Response($toRetutn);
+            $re = new Response($risultato);
+            $re->headers->set('Content-type','application/json');
+            return $re;
         } else {
-            return new Response("La partecipazione con questo id squadra: ".$id." non esiste");
+            return new Response("La partecipazione con questo id squadra: ".$id." non esiste",404);
         }
     }
 
@@ -65,13 +70,16 @@ class PartecipazioneController extends Controller
         $manager = new ManagerPartecipazione();
         $risultato = $manager->getPartecipazioniByTorneo($id);
         if($risultato!=FALSE){
-            $toRetutn = "";
+            $toReturn = "{\"partita\":[";
             foreach ($risultato as $s){
-                $toRetutn = $toRetutn.$s;
+                $toReturn = $toReturn.$s.",";
             }
-            return new Response($toRetutn);
+            $toReturn = $toReturn."]}";
+            $re = new Response($toReturn);
+            $re->headers->set('Content-type','application/json');
+            return $re;
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$id." non esiste");
+            return new Response("La partecipazione con questo id torneo: ".$id." non esiste",404);
         }
     }
 
@@ -92,7 +100,7 @@ class PartecipazioneController extends Controller
         if($risultato!=FALSE){
             return new Response("Partecipazione inserita correttamente");
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste");
+            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
         }
     }
 
@@ -114,7 +122,7 @@ class PartecipazioneController extends Controller
         if($risultato!=FALSE){
             return new Response("Partecipazione modificata correttamente");
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste");
+            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
         }
     }
 
@@ -132,7 +140,7 @@ class PartecipazioneController extends Controller
         if($risultato!=FALSE){
             return new Response("Partecipazione eliminata correttamente");
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste");
+            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
         }
     }
 
