@@ -42,7 +42,7 @@ class NewsController extends Controller
                 $re=new Response($response);
                 $re->headers->set('Content-Type', 'application/json');
                 return $re;
-                return new Response($response);
+                
             } else
                 return new Response("nessuna notizia di questa squadra",404);
 

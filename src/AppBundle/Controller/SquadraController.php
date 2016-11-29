@@ -28,7 +28,7 @@ class SquadraController extends Controller
      * @Route("/squadra/insert",name="insertsquadra")
      * @Method("POST")
      */
-    public function insert(Request $re){
+    /*public function insert(Request $re){
         $s=new Squadra();
         $m=new ManagerSquadra();
         $s->setNome($re->request->get("n"));
@@ -44,7 +44,7 @@ class SquadraController extends Controller
                 return new Response("problema con l inserimento della squadra",404);
         }
         else return new Response("problema nel caricare la foto",404);
-    }
+    }*/
     /**
  * @Route("/squadra/all",name="allSquadre")
  * @Method("GET")
