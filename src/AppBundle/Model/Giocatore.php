@@ -309,7 +309,7 @@ class Giocatore
                 '","email":"'.$this->getEmail().
                 '","residenza":"'.$this->getResidenza().
                 '","nazionalita":"'.$this->getNazionalita().
-                '","valore":"'.$this->getValore(). '"}'.
+                '","valore":"'.$this->getValore().
                 '","data":"'.$this->getDataDiNascita().
                 '","url":"'.$this->getUrlImmagine().
                 '","squadra":"'.$this->getSquadreIdSquadre().

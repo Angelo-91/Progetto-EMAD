@@ -79,15 +79,18 @@ class FormazioneController extends Controller
      */
     public function getFormazioneByIdSquadra($id){
         $m=new ManagerFormazione();
-        $toReturn="";
+        $toReturn="{\"formazione\":[";
         $statistiche = $m->getFormazioneConDatiGiocatore($id);
         if($statistiche!=null){
             foreach ($statistiche as $s)
-                $toReturn=$toReturn.$s;
+                $toReturn=$toReturn.$s.",";
 
-            return new Response($toReturn);
+            $toReturn=$toReturn."]}";
+            $r=new Response($toReturn);
+            $r->headers->set('Content-Type', 'application/json');
+            return $r;
         } else {
-            return new Response("La partita con questo id: ".$id." non esiste");
+            return new Response("risorsa non esistente",404);
         }
     }
 

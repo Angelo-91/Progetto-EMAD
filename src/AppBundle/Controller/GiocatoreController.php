@@ -38,11 +38,14 @@ class GiocatoreController extends Controller
         $g = new ManagerGiocatore();
         $giocatori = $g->getGiocatoriByIdSquadra($idSquadra);
         if (count($giocatori) > 0) {
-            $response = "";
+            $response = "{\"giocatori\":[";
             foreach ($giocatori as $g)
-                $response = $response . $g;
+                $response = $response . $g.",";
 
-            return new Response($response);
+            $response=$response."]}";
+            $r=new Response($response);
+            $r->headers->set('Content-Type', 'application/json');
+            return $r;
         } else
             return new Response("nessun giocatore di questa squadra",404);
 
@@ -94,9 +97,11 @@ class GiocatoreController extends Controller
     public function getGiocatoreById($id)
     {
         $m = new ManagerGiocatore();
-        $g = $m->getNewsById($id);
+        $g = $m->getGiocatoreById($id);
         if ($g != null) {
-            return new Response($g);
+            $r=new Response($g);
+            $r->headers->set('Content-Type', 'application/json');
+            return $r;
         } else {
             return new Response("Il giocatore con questo id: " . $id . " non esiste",404);
         }

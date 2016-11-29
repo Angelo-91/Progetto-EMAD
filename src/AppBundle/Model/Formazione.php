@@ -191,7 +191,7 @@ private $espulsioni;
             '","Partite_idPartita":"'.$this->getPartiteIdPartita().
             '","Giocatori_idGiocatori":"'.$this->getGiocatoriIdGiocatori().
             '","assist":"'.$this->getAssist().
-            '","ruolo":"'.$this->getRuolo(). '"}'.
+            '","ruolo":"'.$this->getRuolo().
             '","minutiGiocati":"'.$this->getMinutiGiocati().
             '","votoPersonale":"'.$this->getVotoPersonale().
             '","ammonizioni":"'.$this->getAmmonizioni().

@@ -34,10 +34,14 @@ class NewsController extends Controller
         $n = new ManagerNews();
         $news = $n->getNewsByIdSquadra($idSquadra);
             if (count($news) > 0) {
-                $response = "";
+                $response = "{\"news\":[";
                 foreach ($news as $n)
-                    $response = $response . $n;
+                    $response = $response . $n.",";
 
+                $response=$response."]}";
+                $re=new Response($response);
+                $re->headers->set('Content-Type', 'application/json');
+                return $re;
                 return new Response($response);
             } else
                 return new Response("nessuna notizia di questa squadra",404);
@@ -141,7 +145,9 @@ class NewsController extends Controller
 
         $news = $m->getNewsById($id);
         if($news!=null){
-            return new Response($news);
+            $r=new Response($news);
+            $r->headers->set('Content-Type', 'application/json');
+            return $r;
         } else {
             return new Response("La news con questo id: ".$id." non esiste",404);
         }
