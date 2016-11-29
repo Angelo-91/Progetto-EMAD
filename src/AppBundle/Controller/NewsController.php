@@ -50,6 +50,7 @@ class NewsController extends Controller
      * @Route("/news/insert",name="insertnews")
      * @Method("POST")
      */
+    //PROTETTO
     public function insert(Request $re){
         $mU=new ManagerUser();
         $n=new News();
@@ -77,6 +78,7 @@ class NewsController extends Controller
      * @Route("/news/elimina/{id}",name="eliminanews")
      * @Method("GET")
      */
+    //PROTETTO
     public function deleteNewsById($id)
     {
         $mU = new ManagerUser();
@@ -94,12 +96,11 @@ class NewsController extends Controller
         } return new Response("la risorsa non esiste", 404);
     }
 
-
-
     /**
      * @Route("/news/aggiorna",name="aggiornaNews")
      * @Method("POST")
      */
+    //PROTETTO
     public function aggiornaNews(Request $req){
         $mN = new ManagerNews();
         $mU=new ManagerUser();
