@@ -21,7 +21,7 @@ class UserController extends Controller
      * @Route("/user/all",name="allUser")
      * @Method("GET")
      */
-    public function getAllUser(){
+   /* public function getAllUser(){
         $manager = new ManagerUser();
         $risultati = $manager->get();
         if($risultati!=null){
@@ -35,12 +35,12 @@ class UserController extends Controller
             return new Response("problemi");
         }
     }
-
+*/
     /**
      * @Route("/getuser/{email}",name="getUserByEmail")
      * @Method("GET")
      */
-    public function getUserByEmail($email){
+   /* public function getUserByEmail($email){
         $manager = new ManagerUser();
         $risultato = $manager->getUserByEmail($email);
         if($risultato!=null){
@@ -49,7 +49,7 @@ class UserController extends Controller
         else {
             return new Response("Non esiste alcun utente con questa mail: ".$email);
         }
-    }
+    }*/
 
     /**
  * @Route("/user/registrati",name="registrazioneUser")
