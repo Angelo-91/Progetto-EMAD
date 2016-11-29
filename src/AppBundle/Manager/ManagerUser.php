@@ -150,6 +150,7 @@ class ManagerUser
      * @return bool
      */
     public function logout(){
+        setcookie("PHPSESSID","",time()-3600,"/");
         return session_destroy();
     }
 
