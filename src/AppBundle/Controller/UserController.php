@@ -37,7 +37,7 @@ class UserController extends Controller
     }
 
     /**
-     * @Route("/user/{email}",name="getUserByEmail")
+     * @Route("/getuser/{email}",name="getUserByEmail")
      * @Method("GET")
      */
     public function getUserByEmail($email){
