@@ -103,19 +103,23 @@ class ManagerUser
      * @return bool
      */
     public function login(User $utente){
-        $emailUtente = $utente->getEmail();
-        $passwordUtente = $utente->getPassword();
-        $ris = $this->getUserByEmail($emailUtente);
-        if($ris == FALSE){
-            return FALSE;
-        } else {
-            $check = $this->checkPassword($passwordUtente,$ris->getPassword());
-            if($check == TRUE){
-                $this->creaSession($ris->getEmail(),$ris->getPassword(),$ris->getSquadreIdSquadre());
-                return TRUE;
-            } else {
+        if(!isset($_SESSION)) {
+            $emailUtente = $utente->getEmail();
+            $passwordUtente = $utente->getPassword();
+            $ris = $this->getUserByEmail($emailUtente);
+            if ($ris == FALSE) {
                 return FALSE;
+            } else {
+                $check = $this->checkPassword($passwordUtente, $ris->getPassword());
+                if ($check == TRUE) {
+                    $this->creaSession($ris->getEmail(), $ris->getPassword(), $ris->getSquadreIdSquadre());
+                    return TRUE;
+                } else {
+                    return FALSE;
+                }
             }
+        } else {
+            return FALSE;
         }
     }
 
@@ -150,8 +154,11 @@ class ManagerUser
      * @return bool
      */
     public function logout(){
-        setcookie("PHPSESSID","",time()-3600,"/");
-        return session_destroy();
+        if(isset($_SESSION)){
+            setcookie("PHPSESSID","",time()-3600,"/");
+            return session_destroy();
+        } else
+            return FALSE;
     }
 
     public function __destruct()

@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Manager\ManagerUser;
 use AppBundle\Model\Partecipazione;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -87,17 +88,22 @@ class PartecipazioneController extends Controller
     public function inserisciPartecipazione(Request $req){
         $manager = new ManagerPartecipazione();
         $part = new Partecipazione();
-        $part->setIdSquadre($req->request->get("idSquadra"));
-        $part->setPunteggio($req->request->get("punteggio"));
-        $part->setVittorie($req->request->get("vittorie"));
-        $part->setPareggi($req->request->get("pareggi"));
-        $part->setSconfitte($req->request->get("sconfitte"));
-        $part->setNomeTorneo($req->request->get("nomeTorneo"));
-        $risultato = $manager->inserisciPartecipazione($part);
-        if($risultato!=FALSE){
-            return new Response("Partecipazione inserita correttamente");
+        $managerUser = new ManagerUser();
+        if($managerUser->check($req->request->get("idSquadra"))) {
+            $part->setIdSquadre($req->request->get("idSquadra"));
+            $part->setPunteggio($req->request->get("punteggio"));
+            $part->setVittorie($req->request->get("vittorie"));
+            $part->setPareggi($req->request->get("pareggi"));
+            $part->setSconfitte($req->request->get("sconfitte"));
+            $part->setNomeTorneo($req->request->get("nomeTorneo"));
+            $risultato = $manager->inserisciPartecipazione($part);
+            if ($risultato != FALSE) {
+                return new Response("Partecipazione inserita correttamente");
+            } else {
+                return new Response(" id squadra: " . $part->getIdSquadre() . " non esiste", 404);
+            }
         } else {
-            return new Response(" id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response("non hai accesso a questa risorsa",404);
         }
     }
 
@@ -115,11 +121,21 @@ class PartecipazioneController extends Controller
         $part->setVittorie($req->request->get("vittorie"));
         $part->setPareggi($req->request->get("pareggi"));
         $part->setSconfitte($req->request->get("sconfitte"));
-        $risultato = $manager->aggiornaPartecipazione($part);
-        if($risultato!=FALSE){
-            return new Response("Partecipazione modificata correttamente");
+        $partDat = $manager->getPartecipazioneById($req->request->get("idPartecipazione"));
+        if($partDat!=FALSE) {
+            $managerUser = new ManagerUser();
+            if($managerUser->check($partDat->getIdSquadre())) {
+                $risultato = $manager->aggiornaPartecipazione($part);
+                if ($risultato != FALSE) {
+                    return new Response("Partecipazione modificata correttamente");
+                } else {
+                    return new Response("con questo id part: " . $part->getIdPartecipazione() . " non esiste", 404);
+                }
+            } else {
+                return  new Response("non hai accesso a questa risorsa",404);
+            }
         } else {
-            return new Response("con questo id part: ".$part->getIdPartecipazione()." non esiste",404);
+            return new Response("la risorsa non esiste", 404);
         }
     }
 
@@ -132,11 +148,21 @@ class PartecipazioneController extends Controller
         $manager = new ManagerPartecipazione();
         $part = new Partecipazione();
         $part->setIdPartecipazione($req->request->get("idPartecipazione"));
-        $risultato = $manager->eliminaPartecipazione($part);
-        if($risultato!=FALSE){
-            return new Response("Partecipazione eliminata correttamente");
+        $partDb = $manager->getPartecipazioneById($req->request->get("idPartecipazione"));
+        if($partDb!=FALSE) {
+            $managerUser = new ManagerUser();
+            if($managerUser->check($partDb->getIdSquadre())) {
+                $risultato = $manager->eliminaPartecipazione($part);
+                if ($risultato != FALSE) {
+                    return new Response("Partecipazione eliminata correttamente");
+                } else {
+                    return new Response("Questo id partecipazione non esiste", 404);
+                }
+            } else {
+                return new Response("non hai accesso a questa risorsa",404);
+            }
         } else {
-            return new Response("Questo id partecipazione non esiste",404);
+            return new Response("la risorsa non esiste", 404);
         }
     }
 

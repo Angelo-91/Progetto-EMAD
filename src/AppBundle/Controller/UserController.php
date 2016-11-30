@@ -56,15 +56,19 @@ class UserController extends Controller
  * @Method("POST")
  */
     public function registraUtente(Request $request){
-        $manager = new ManagerUser();
-        $utente = new User();
-        $utente->setEmail($request->request->get("email"));
-        $utente->setPassword($request->request->get("password"));
-        $ris = $manager->registrazione($utente,$request->request->get("nomeSquadra"));
-        if($ris != FALSE){
-            return new Response("Registrazione avvenuta con successo");
+        if(!isset($_SESSION)){
+            $manager = new ManagerUser();
+            $utente = new User();
+            $utente->setEmail($request->request->get("email"));
+            $utente->setPassword($request->request->get("password"));
+            $ris = $manager->registrazione($utente,$request->request->get("nomeSquadra"));
+            if($ris != FALSE){
+                return new Response("Registrazione avvenuta con successo");
+            } else {
+                return new Response("Problemi con la registrazione",404);
+            }
         } else {
-            return new Response("Problemi con la registrazione",404);
+            return new Response("Non puoi registrare più di una squadra",404);
         }
     }
 
