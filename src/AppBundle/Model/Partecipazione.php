@@ -11,12 +11,46 @@ namespace AppBundle\Model;
 
 class Partecipazione
 {
+    private $idPartecipazione;
     private $punteggio;
     private $vittorie;
     private $pareggi;
     private $sconfitte;
     private $squadre_idSquadre;
-    private $tornei_idTornei;
+    private $nomeTorneo;
+
+    /**
+     * @return mixed
+     */
+    public function getNomeTorneo()
+    {
+        return $this->nomeTorneo;
+    }
+
+    /**
+     * @param mixed $nomeTorneo
+     */
+    public function setNomeTorneo($nomeTorneo)
+    {
+        $this->nomeTorneo = $nomeTorneo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdPartecipazione()
+    {
+        return $this->idPartecipazione;
+    }
+
+    /**
+     * @param mixed $idPartecipazione
+     */
+    public function setIdPartecipazione($idPartecipazione)
+    {
+        $this->idPartecipazione = $idPartecipazione;
+    }
+
 
 
     /**
@@ -102,22 +136,16 @@ class Partecipazione
     /**
      * @return mixed
      */
-    public function getIdTornei()
-    {
-        return $this->tornei_idTornei;
-    }
 
-    /**
-     * @param mixed $idTornei
-     */
-    public function setIdTornei($idTornei)
-    {
-        $this->tornei_idTornei = $idTornei;
-    }
 
     function __toString()
     {
-        return '{"idSquadre":"'.$this->getIdSquadre().'","idTornei":"'.$this->getIdTornei().'","punteggio":"'.$this->getPunteggio().'","vittorie":"'.$this->getVittorie().'","pareggi":"'.$this->getPareggi().'","sconfitte":"'.$this->getSconfitte().'"}';
+        return '{"idSquadre":"'.$this->getIdSquadre().
+                '","idPartecipazione":"'.$this->getIdPartecipazione().
+                '","punteggio":"'.$this->getPunteggio().
+                '","vittorie":"'.$this->getVittorie().
+                '"," nomeTorneo":"'.$this->getNomeTorneo().
+                '","pareggi":"'.$this->getPareggi().'","sconfitte":"'.$this->getSconfitte().'"}';
     }
 
 }

@@ -16,6 +16,40 @@ class Partita
     private $squadraTrasferta;
     private $risultato;
     private $squadre_idSquadre;
+    private $orario;
+    private $luogo;
+
+    /**
+     * @return mixed
+     */
+    public function getOrario()
+    {
+        return $this->orario;
+    }
+
+    /**
+     * @param mixed $orario
+     */
+    public function setOrario($orario)
+    {
+        $this->orario = $orario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLuogo()
+    {
+        return $this->luogo;
+    }
+
+    /**
+     * @param mixed $luogo
+     */
+    public function setLuogo($luogo)
+    {
+        $this->luogo = $luogo;
+    }
 
     /**
      * @return mixed
@@ -100,7 +134,12 @@ class Partita
     function __toString()
     {
         // TODO: Implement __toString() method.
-        return '{"idPartita":"'.$this->getIdPartita().'","squadraCasa":"'.$this->getSquadraCasa().'","squadraTrasferta":"'.$this->getSquadraTrasferta().'","risultato":"'.$this->getRisultato().'","squadre_idSquadre":"'.$this->getSquadreIdSquadre().'"}';
+        return '{"idPartita":"'.$this->getIdPartita().
+            '","squadraCasa":"'.$this->getSquadraCasa().
+            '","squadraTrasferta":"'.$this->getSquadraTrasferta().
+            '","orario":"'.$this->getOrario().
+            '","luogo":"'.$this->getLuogo().
+            '","risultato":"'.$this->getRisultato().'","squadre_idSquadre":"'.$this->getSquadreIdSquadre().'"}';
     }
 
 

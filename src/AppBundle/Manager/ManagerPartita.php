@@ -36,6 +36,8 @@ class ManagerPartita
                 $s->setSquadraCasa($row["squadraCasa"]);
                 $s->setSquadraTrasferta($row["squadraTrasferta"]);
                 $s->setRisultato($row["risultato"]);
+                $s->setLuogo($row["luogo"]);
+                $s->setOrario($row["orario"]);
                 $s->setSquadreIdSquadre($row["Squadre_idSquadre"]);
                 $partite[$i] = $s;
                 $i++;
@@ -59,6 +61,8 @@ class ManagerPartita
             $toReturnPartita->setSquadraCasa($row["squadraCasa"]);
             $toReturnPartita->setSquadraTrasferta($row["squadraTrasferta"]);
             $toReturnPartita->setIdPartita($row["idPartita"]);
+            $toReturnPartita->setLuogo($row["luogo"]);
+            $toReturnPartita->setOrario($row["orario"]);
             return $toReturnPartita;
         } else {
             return FALSE;
@@ -78,6 +82,8 @@ class ManagerPartita
                 $s->setSquadraCasa($row["squadraCasa"]);
                 $s->setSquadraTrasferta($row["squadraTrasferta"]);
                 $s->setRisultato($row["risultato"]);
+                $s->setLuogo($row["luogo"]);
+                $s->setOrario($row["orario"]);
                 $s->setSquadreIdSquadre($row["Squadre_idSquadre"]);
                 $toReturnPartite[$i] = $s;
                 $i++;
@@ -100,6 +106,8 @@ class ManagerPartita
                 $s->setSquadraCasa($row["squadraCasa"]);
                 $s->setSquadraTrasferta($row["squadraTrasferta"]);
                 $s->setRisultato($row["risultato"]);
+                $s->setLuogo($row["luogo"]);
+                $s->setOrario($row["orario"]);
                 $s->setSquadreIdSquadre($row["Squadre_idSquadre"]);
                 $toReturnPartite[$i] = $s;
                 $i++;
@@ -112,15 +120,26 @@ class ManagerPartita
 
     public function insertPartita(Partita $partita){
         $managerSquadra = new ManagerSquadra();
-        $squadraCasa = $partita->getSquadraCasa();
-        $squadraTrasferta = $partita->getSquadraTrasferta();
-        if($managerSquadra->getByName($squadraCasa) && $managerSquadra->getByName($squadraTrasferta)) {
-            $sql = "INSERT INTO partite (squadraCasa, squadraTrasferta, risultato, Squadre_idSquadre) VALUES ('" . $partita->getSquadraCasa() . "','" . $partita->getSquadraTrasferta() . "','" . $partita->getRisultato() . "','" . $partita->getSquadreIdSquadre() . "')";
-            $risultato = $this->conn->query($sql);
-            return $risultato;
-        } else {
-            return FALSE;
+        $squadra=$managerSquadra->getById($partita->getSquadreIdSquadre());
+        if($squadra!=null){
+            $query = "INSERT INTO partite (squadraCasa, squadraTrasferta, risultato, orario, luogo , Squadre_idSquadre)
+            VALUES ('" . $partita->getSquadraCasa() . "','"
+                . $partita->getSquadraTrasferta() . "','"
+                . $partita->getRisultato() . "','"
+                . $partita->getOrario(). "','"
+                . $partita->getLuogo(). "','"
+                . $partita->getSquadreIdSquadre() . "')";
+
+            if (!$this->conn->query($query)) {
+                die($this->conn->error);
+                return null;
+            }
+            else return $partita;
         }
+        else return null;
+
+
+
     }
 
     public function deletePartita($idPartita){
@@ -140,14 +159,17 @@ class ManagerPartita
             $risultato = $partita->getRisultato();
             $squadraCasa = $partita->getSquadraCasa();
             $squadraTrasferta = $partita->getSquadraTrasferta();
-            $sqEx = $partita->getSquadreIdSquadre();
             $id = $partita->getIdPartita();
-            $sql = "UPDATE partite SET risultato='$risultato', squadraCasa='$squadraCasa' , squadraTrasferta='$squadraTrasferta' , Squadre_idSquadre='$sqEx' WHERE idPartita='$id'";
-            $ri = $this->conn->query($sql);
-            return $ri;
-        } else {
-            return FALSE;
+            $or=$partita->getOrario();
+            $l=$partita->getLuogo();
+            $sql = "UPDATE partite SET risultato='$risultato', orario='$or', luogo='$l',squadraCasa='$squadraCasa' , squadraTrasferta='$squadraTrasferta'  WHERE idPartita='$id'";
+            if (!$this->conn->query($sql)) {
+                die($this->conn->error);
+                return false;
+            }
+            else return $partita;
         }
+        return false;
     }
 
 

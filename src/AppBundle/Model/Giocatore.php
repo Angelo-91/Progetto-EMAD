@@ -24,11 +24,45 @@ class Giocatore
     private $nome;
     private $cognome;
     private $residenza;
+
+    /**
+     * @return mixed
+     */
+    public function getCapitano()
+    {
+        return $this->capitano;
+    }
+
+    /**
+     * @param mixed $capitano
+     */
+    public function setCapitano($capitano)
+    {
+        $this->capitano = $capitano;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNumeroMaglia()
+    {
+        return $this->numeroMaglia;
+    }
+
+    /**
+     * @param mixed $numeroMaglia
+     */
+    public function setNumeroMaglia($numeroMaglia)
+    {
+        $this->numeroMaglia = $numeroMaglia;
+    }
     private $nazionalita;
     private $email;
     private $dataDiNascita;
     private $Squadre_idSquadre;
     private $urlImmagine;
+    private $capitano;
+    private $numeroMaglia;
 
     /**
      * @return mixed
@@ -320,6 +354,8 @@ class Giocatore
                 '","espulsioni":"'. $this->getEspulsioni().
                 '","assist":"'.$this->getAssist().
                 '","presenze":"'.$this->getPresenze().
+                '","numeroMaglia":"'.$this->getNumeroMaglia().
+                '","capitano":"'.$this->getCapitano().
                 '","id":"'.$this->getIdGiocatori().
                 '"}';
         return $toString;

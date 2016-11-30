@@ -84,7 +84,7 @@ class GiocatoreController extends Controller
                 return new Response("giocatore inserito con id" . $re->request->get("i"));
             } else return new Response("problema nel caricare la foto");
         }
-        else new Response("non hai accesso a questa risorsa",404);
+        else return new Response("non hai accesso a questa risorsa",404);
     }
     else
         return new Response("vuoi inserire un giocatore a una squadra che non esiste",404);
@@ -156,7 +156,11 @@ class GiocatoreController extends Controller
                 $giocatore->setNazionalita($req->request->get("naz"));
                 $giocatore->setEmail($req->request->get("email"));
                 $giocatore->setDataDiNascita($req->request->get("dat"));
+                $giocatore->setCapitano($req->request->get("cap"));
+                $giocatore->setNumeroMaglia($req->request->get("num"));
+                $giocatore->setDataDiNascita($req->request->get("dat"));
                 $giocatore->setSquadreIdSquadre($req->request->get("i"));
+
 
                 $pathFinal = Utility::loadFile("file", "Giocatori");
                 if ($pathFinal != null) {

@@ -109,10 +109,14 @@ class PartitaController extends Controller
         $managerPartita = new ManagerPartita();
         $squadraCasa = $req->request->get("squadraCasa");
         $squadraTrasferta = $req->request->get("squadraTrasferta");
+        $orario=$req->request->get("o");
+        $luogo=$req->request->get("l");
         $partita->setSquadraCasa($squadraCasa);
         $partita->setSquadraTrasferta($squadraTrasferta);
         $partita->setRisultato($req->request->get("risultato"));
-        $partita->setSquadreIdSquadre($req->request->get("squadraEsterna"));
+        $partita->setSquadreIdSquadre($req->request->get("squadra"));
+        $partita->setLuogo($luogo);
+        $partita->setOrario($orario);
         $ris = $managerPartita->insertPartita($partita);
         if ($ris != FALSE) {
             return new Response("Inserimento avvenuto con successo");
@@ -145,9 +149,10 @@ class PartitaController extends Controller
         $id = $req->request->get("idPartita");
         $partita->setIdPartita($id);
         $partita->setSquadraCasa($req->request->get("squadraCasa"));
+        $partita->setOrario($req->request->get("o"));
+        $partita->setLuogo($req->request->get("l"));
         $partita->setSquadraTrasferta($req->request->get("squadraTrasferta"));
         $partita->setRisultato($req->request->get("risultato"));
-        $partita->setSquadreIdSquadre($req->request->get("squadraEsterna"));
         $ris = $managerPartite->aggiornaPartita($partita);
         if($ris!=null){
             return new Response("Aggiornamento della partita con questo id: ".$id." avvenuto con successo");

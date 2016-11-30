@@ -31,11 +31,12 @@ class ManagerPartecipazione
             while($row = $result->fetch_assoc()){
                 $s = new Partecipazione();
                 $s->setIdSquadre($row["Squadre_idSquadre"]);
-                $s->setIdTornei($row["Tornei_idTornei"]);
+                $s->setIdPartecipazione($row["idPartecipazione"]);
                 $s->setPunteggio($row["punteggio"]);
                 $s->setVittorie($row["vittorie"]);
                 $s->setPareggi($row["pareggi"]);
                 $s->setSconfitte($row["sconfitte"]);
+                $s->setNomeTorneo($row["nomeTorneo"]);
                 $partecipazioni[$i] = $s;
                 $i++;
             }
@@ -58,10 +59,11 @@ class ManagerPartecipazione
             while($row = $result->fetch_assoc()){
                 $s = new Partecipazione();
                 $s->setIdSquadre($row["Squadre_idSquadre"]);
-                $s->setIdTornei($row["Tornei_idTornei"]);
+                $s->setIdPartecipazione($row["idPartecipazione"]);
                 $s->setPunteggio($row["punteggio"]);
                 $s->setVittorie($row["vittorie"]);
                 $s->setPareggi($row["pareggi"]);
+                $s->setNomeTorneo($row["nomeTorneo"]);
                 $s->setSconfitte($row["sconfitte"]);
                 $partecipazioni[$i] = $s;
                 $i++;
@@ -83,9 +85,10 @@ class ManagerPartecipazione
             while($row = $result->fetch_assoc()){
                 $s = new Partecipazione();
                 $s->setIdSquadre($row["Squadre_idSquadre"]);
-                $s->setIdTornei($row["Tornei_idTornei"]);
+                $s->setIdPartecipazione($row["idPartecipazione"]);
                 $s->setPunteggio($row["punteggio"]);
                 $s->setVittorie($row["vittorie"]);
+                $s->setNomeTorneo($row["nomeTorneo"]);
                 $s->setPareggi($row["pareggi"]);
                 $s->setSconfitte($row["sconfitte"]);
                 $partecipazioni[$i] = $s;
@@ -98,12 +101,16 @@ class ManagerPartecipazione
     }
 
     public function inserisciPartecipazione(Partecipazione $part){
-        $idT = $part->getIdTornei();
+
         $idS = $part->getIdSquadre();
-        $manT = new ManagerTorneo();
         $manS = new ManagerSquadra();
-        if($manT->getTorneoById($idT) && $manS->getById($idS)) {
-            $sql = "INSERT INTO partecipazione (punteggio, vittorie, pareggi, sconfitte, Squadre_idSquadre, Tornei_idTornei) VALUES ('" . $part->getPunteggio() . "','" . $part->getVittorie() . "','" . $part->getPareggi() . "','" . $part->getSconfitte() . "','" . $part->getIdSquadre() . "','" . $part->getIdTornei() . "')";
+        if($manS->getById($idS)) {
+            $sql = "INSERT INTO partecipazione (punteggio, vittorie, pareggi, sconfitte,nomeTorneo, Squadre_idSquadre) VALUES ('" . $part->getPunteggio() .
+                "','" . $part->getVittorie() .
+                "','" . $part->getPareggi() .
+                "','" . $part->getSconfitte() .
+                "','" . $part->getNomeTorneo() .
+                "','" . $part->getIdSquadre() . "')";
             $risultato = $this->conn->query($sql);
             return $risultato;
         } else {
@@ -112,12 +119,17 @@ class ManagerPartecipazione
     }
 
     public function aggiornaPartecipazione(Partecipazione $part){
-        $idT = $part->getIdTornei();
+
         $idS = $part->getIdSquadre();
-        $manT = new ManagerTorneo();
         $manS = new ManagerSquadra();
-        if($manT->getTorneoById($idT) && $manS->getById($idS)) {
-            $sql = "UPDATE partecipazione SET punteggio='" . $part->getPunteggio() . "', vittorie='" . $part->getVittorie() . "' , pareggi='" . $part->getPareggi() . "' , sconfitte= '" . $part->getSconfitte() . "', Squadre_idSquadre='" . $part->getIdSquadre() . "' , Tornei_idTornei='" . $part->getIdTornei() . "' WHERE Squadre_idSquadre='".$part->getIdSquadre() ."' AND Tornei_idTornei='".$part->getIdTornei()."'";
+        if($manS->getById($idS)) {
+            $sql = "UPDATE partecipazione SET 
+                  punteggio='" . $part->getPunteggio() .
+                "', vittorie='" . $part->getVittorie() .
+                "' , pareggi='" . $part->getPareggi() .
+                "' , nomeTorneo='" . $part->getNomeTorneo() .
+                "' , sconfitte= '" . $part->getSconfitte() .
+                 "' WHERE idPartecipazione='".$part->getIdPartecipazione() ."'";
             $risultato = $this->conn->query($sql);
             return $risultato;
         } else {
@@ -126,12 +138,11 @@ class ManagerPartecipazione
     }
 
     public function eliminaPartecipazione(Partecipazione $part){
-        $idT = $part->getIdTornei();
+
         $idS = $part->getIdSquadre();
-        $manT = new ManagerTorneo();
         $manS = new ManagerSquadra();
-        if($manT->getTorneoById($idT) && $manS->getById($idS)) {
-            $sql = "DELETE FROM partecipazione WHERE Squadre_idSquadre='".$part->getIdSquadre() ."' AND Tornei_idTornei='".$part->getIdTornei()."'";
+        if( $manS->getById($idS)) {
+            $sql = "DELETE FROM partecipazione WHERE idPartecipazione='".$part->getIdPartecipazione()."'";
             $risultato = $this->conn->query($sql);
             return $risultato;
         } else {

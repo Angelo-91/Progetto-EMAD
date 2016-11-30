@@ -53,7 +53,7 @@ class PartecipazioneController extends Controller
             foreach ($risultato as $s){
                 $toRetutn = $toRetutn.$s;
             }
-            $re = new Response($risultato);
+            $re = new Response($toRetutn);
             $re->headers->set('Content-type','application/json');
             return $re;
         } else {
@@ -91,16 +91,16 @@ class PartecipazioneController extends Controller
         $manager = new ManagerPartecipazione();
         $part = new Partecipazione();
         $part->setIdSquadre($req->request->get("idSquadra"));
-        $part->setIdTornei($req->request->get("idTorneo"));
         $part->setPunteggio($req->request->get("punteggio"));
         $part->setVittorie($req->request->get("vittorie"));
         $part->setPareggi($req->request->get("pareggi"));
         $part->setSconfitte($req->request->get("sconfitte"));
+        $part->setNomeTorneo($req->request->get("nomeTorneo"));
         $risultato = $manager->inserisciPartecipazione($part);
         if($risultato!=FALSE){
             return new Response("Partecipazione inserita correttamente");
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response(" id squadra: ".$part->getIdSquadre()." non esiste",404);
         }
     }
 
@@ -112,8 +112,8 @@ class PartecipazioneController extends Controller
     public function aggiornaPartecipazione(Request $req){
         $manager = new ManagerPartecipazione();
         $part = new Partecipazione();
-        $part->setIdSquadre($req->request->get("idSquadra"));
-        $part->setIdTornei($req->request->get("idTorneo"));
+        $part->setIdPartecipazione($req->request->get("idPartecipazione"));
+        $part->setNomeTorneo($req->request->get("nomeTorneo"));
         $part->setPunteggio($req->request->get("punteggio"));
         $part->setVittorie($req->request->get("vittorie"));
         $part->setPareggi($req->request->get("pareggi"));
@@ -122,7 +122,7 @@ class PartecipazioneController extends Controller
         if($risultato!=FALSE){
             return new Response("Partecipazione modificata correttamente");
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response("con questo id part: ".$part->getIdPartecipazione()." non esiste",404);
         }
     }
 
@@ -134,13 +134,12 @@ class PartecipazioneController extends Controller
     public function eliminaPartecipazione(Request $req){
         $manager = new ManagerPartecipazione();
         $part = new Partecipazione();
-        $part->setIdSquadre($req->request->get("idSquadra"));
-        $part->setIdTornei($req->request->get("idTorneo"));
+        $part->setIdPartecipazione($req->request->get("idPartecipazione"));
         $risultato = $manager->eliminaPartecipazione($part);
         if($risultato!=FALSE){
             return new Response("Partecipazione eliminata correttamente");
         } else {
-            return new Response("La partecipazione con questo id torneo: ".$part->getIdTornei()." o con questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response(" questo id squadra: ".$part->getIdSquadre()." non esiste",404);
         }
     }
 

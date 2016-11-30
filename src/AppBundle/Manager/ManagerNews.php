@@ -80,11 +80,12 @@ class ManagerNews
             '".$news->getUrlImmagine()."')";
         if (!$this->conn->query($query)) {
             die($this->conn->error);
+            return null;
         }
+        else return $news;
 
 
     }
-
 
     /**
      * @param $id
@@ -110,7 +111,6 @@ class ManagerNews
                 return null;
             }
     }
-
     /**
      * @param $id
      * @return null|string

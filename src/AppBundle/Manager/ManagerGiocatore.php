@@ -60,6 +60,8 @@ class ManagerGiocatore
                 $n->setEmail($row["email"]);
                 $n->setDataDiNascita($row["dataDiNascita"]);
                 $n->setSquadreIdSquadre($row["Squadre_idSquadre"]);
+                $n->setNumeroMaglia($row["numeroMaglia"]);
+                $n->setCapitano($row["capitano"]);
                 $n->setUrlImmagine($row["urlImmagine"]);
             }
             return $n;
@@ -99,6 +101,8 @@ class ManagerGiocatore
                 $g->setNazionalita($row["nazionalita"]);
                 $g->setEmail($row["email"]);
                 $g->setDataDiNascita($row["dataDiNascita"]);
+                $n->setNumeroMaglia($row["numeroMaglia"]);
+                $n->setCapitano($row["capitano"]);
                 $g->setSquadreIdSquadre($row["Squadre_idSquadre"]);
                 $g->setUrlImmagine($row["urlImmagine"]);
                 $giocatori[$i]=$g;
@@ -158,11 +162,13 @@ class ManagerGiocatore
         $em=$g->getEmail();
         $dat=$g->getDataDiNascita();
         $url=$g->getUrlImmagine();
+        $num=$g->getNumeroMaglia();
+        $cap=$g->getCapitano();
 
         $sql = "UPDATE giocatori SET  golFatti = '$gF', golSubiti = '$gS', assist = '$a',
         ammonizioni = '$am', espulsioni = '$esp', presenze = '$pre', ruolo = '$ru', valore = '$va', nome = '$n',
         cognome = '$c', residenza = '$res', nazionalita = '$naz', email = '$em',
-        dataDiNascita = '$dat', urlImmagine = '$url' WHERE idGiocatori = $id";
+        dataDiNascita = '$dat', urlImmagine = '$url', numeroMaglia='$num', capitano='$cap' WHERE idGiocatori = $id";
         if (!$this->conn->query($sql)) {
             die($this->conn->error);
             return null;
