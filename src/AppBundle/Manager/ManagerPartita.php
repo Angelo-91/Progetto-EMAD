@@ -131,7 +131,6 @@ class ManagerPartita
                 . $partita->getSquadreIdSquadre() . "')";
 
             if (!$this->conn->query($query)) {
-                die($this->conn->error);
                 return null;
             }
             else return $partita;
@@ -164,7 +163,7 @@ class ManagerPartita
             $l=$partita->getLuogo();
             $sql = "UPDATE partite SET risultato='$risultato', orario='$or', luogo='$l',squadraCasa='$squadraCasa' , squadraTrasferta='$squadraTrasferta'  WHERE idPartita='$id'";
             if (!$this->conn->query($sql)) {
-                die($this->conn->error);
+
                 return false;
             }
             else return $partita;

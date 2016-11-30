@@ -27,7 +27,7 @@ class PartecipazioneController extends Controller
         $manager = new ManagerPartecipazione();
         $risultati = $manager->getAll();
         if($risultati!=FALSE){
-            $toReturn = "{\"partita\":[";
+            $toReturn = "{\"partecipazioni\":[";
             foreach ($risultati as $s){
                 $toReturn = $toReturn.$s.",";
             }
@@ -49,11 +49,28 @@ class PartecipazioneController extends Controller
         $manager = new ManagerPartecipazione();
         $risultato = $manager->getPartecipazioniBySquadra($id);
         if($risultato!=FALSE){
-            $toRetutn = "";
-            foreach ($risultato as $s){
-                $toRetutn = $toRetutn.$s;
-            }
-            $re = new Response($toRetutn);
+            $toReturn = "{\"partecipazione\":[";
+            foreach ($risultato as $s)
+                $toReturn = $toReturn . $s.",";
+
+            $toReturn = $toReturn."]}";
+            $re = new Response($toReturn);
+            $re->headers->set('Content-type','application/json');
+            return $re;
+        } else {
+            return new Response("La partecipazione con questo id squadra: ".$id." non esiste",404);
+        }
+    }
+
+    /**
+     * @Route("/partecipazioni/byId/{id}",name="getPartecipazioniById")
+     * @Method("GET")
+     */
+    public function getPartecipazioniByID($id){
+        $manager = new ManagerPartecipazione();
+        $risultato = $manager->getPartecipazioneById($id);
+        if($risultato!=FALSE){
+            $re = new Response($risultato);
             $re->headers->set('Content-type','application/json');
             return $re;
         } else {
@@ -62,26 +79,6 @@ class PartecipazioneController extends Controller
     }
 
 
-    /**
-     * @Route("/partecipazioni/byTorneo/{id}",name="getPartecipazioniByTorneo")
-     * @Method("GET")
-     */
-    public function getPartecipazioniByTorneo($id){
-        $manager = new ManagerPartecipazione();
-        $risultato = $manager->getPartecipazioniByTorneo($id);
-        if($risultato!=FALSE){
-            $toReturn = "{\"partita\":[";
-            foreach ($risultato as $s){
-                $toReturn = $toReturn.$s.",";
-            }
-            $toReturn = $toReturn."]}";
-            $re = new Response($toReturn);
-            $re->headers->set('Content-type','application/json');
-            return $re;
-        } else {
-            return new Response("La partecipazione con questo id torneo: ".$id." non esiste",404);
-        }
-    }
 
     /**
      * @Route("/partecipazioni/inserisci",name="inserisciPart")
@@ -139,7 +136,7 @@ class PartecipazioneController extends Controller
         if($risultato!=FALSE){
             return new Response("Partecipazione eliminata correttamente");
         } else {
-            return new Response(" questo id squadra: ".$part->getIdSquadre()." non esiste",404);
+            return new Response("Questo id partecipazione non esiste",404);
         }
     }
 
