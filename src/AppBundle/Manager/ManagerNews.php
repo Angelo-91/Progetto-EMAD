@@ -79,7 +79,6 @@ class ManagerNews
         ('".$news->getTitolo()."', '".$news->getContenuto()."', '".$news->getData()."', '".$news->getSquadreIdSquadre()."', 
             '".$news->getUrlImmagine()."')";
         if (!$this->conn->query($query)) {
-            die($this->conn->error);
             return null;
         }
         else return $news;
@@ -141,7 +140,6 @@ class ManagerNews
             $urlImmagine=$news->getUrlImmagine();
             $sql = "UPDATE news SET  titolo='$titolo' , contenuto='$contenuto' , data='$data', urlImmagine='$urlImmagine'  WHERE idNews='$idNews'";
             if (!$this->conn->query($sql)) {
-                die($this->conn->error);
                 return null;
             }
             else  return $news;

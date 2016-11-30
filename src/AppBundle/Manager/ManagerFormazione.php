@@ -44,7 +44,6 @@ class ManagerFormazione
                    '".$f->getAssist()."', '".$f->getRuolo()."','".$f->getMinutiGiocati()."','".$f->getVotoPersonale()."','".$f->getAmmonizioni()."',
                    '".$f->getEspulsioni()."')";
         if (!$this->conn->query($query)) {
-            die($this->conn->error);
             return null;
         }
         else return $f;
@@ -68,7 +67,6 @@ class ManagerFormazione
                 votoPersonale='$vo'
                 ,ammonizioni='$amm',espulsioni='$esp'  WHERE Giocatori_idGiocatori='$gio' AND Partite_idPartita='$part'";
         if (!$this->conn->query($sql)) {
-            die($this->conn->error);
             return null;
         }
         else  return $f;

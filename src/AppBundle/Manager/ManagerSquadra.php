@@ -162,6 +162,7 @@ class ManagerSquadra
 
     }
 
+
     public function aggiornaSquadra(Squadra $s){
 
         $id=$s->getIdSquadre();

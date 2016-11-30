@@ -124,8 +124,9 @@ class ManagerGiocatore
         $query="INSERT INTO giocatori (ruolo, valore,nome, cognome, residenza, nazionalita, email, dataDiNascita,Squadre_idSquadre, urlImmagine) 
                   VALUES ('".$g->getRuolo()."', '".$g->getValore()."', '".$g->getNome()."', '".$g->getCognome()."', '".$g->getResidenza()."', '".$g->getNazionalita()."','".$g->getEmail()."','".$g->getDataDiNascita()."','".$g->getSquadreIdSquadre()."','".$g->getUrlImmagine()."')";
         if (!$this->conn->query($query)) {
-            die($this->conn->error);
+            return null;
         }
+        else return $g;
 
     }
     /**
@@ -170,7 +171,6 @@ class ManagerGiocatore
         cognome = '$c', residenza = '$res', nazionalita = '$naz', email = '$em',
         dataDiNascita = '$dat', urlImmagine = '$url', numeroMaglia='$num', capitano='$cap' WHERE idGiocatori = $id";
         if (!$this->conn->query($sql)) {
-            die($this->conn->error);
             return null;
         }
         else  return $g;
